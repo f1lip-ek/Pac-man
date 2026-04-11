@@ -8,9 +8,9 @@ public class Player {
 
     private int lives = 3;
 
-    private int speed = 1;
-    private int x = 10;
-    private int y = 10;
+    private float speed = 0.5f;
+    private float x = 0;
+    private float y = 0;
 
     public Player(){
 
@@ -32,25 +32,25 @@ public class Player {
         this.movement = movement;
     }
 
-    public int getSpeed(){
+    public float getSpeed(){
         return speed;
     }
 
-    public int getX(){
+    public float getX(){
         return x;
     }
 
-    public int getY(){
+    public float getY(){
         return y;
     }
 
-    public void setX(int num) {
+    public void setX(float num) {
         if ((x + num) > 0 && (x + num) < GamePanel.WIDTH - 50) {
             this.x += num;
         }
     }
 
-    public void setY(int num) {
+    public void setY(float num) {
         if ((y + num) < GamePanel.HEIGHT - 50 && (y + num) > 0) {
             this.y += num;
         }

@@ -43,10 +43,8 @@ public class GamePanel extends JPanel {
             case Movement.RIGHT -> player.setX(player.getSpeed());
         }
 
-        System.out.println(player.getMovement());
 
-
-        g.fillRect(player.getX(), player.getY(), 50, 50);
+        g.fillRect((int) player.getX(), (int) player.getY(), 50, 50);
         repaint();
     }
 }
