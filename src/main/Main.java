@@ -1,6 +1,6 @@
 package main;
 
-import main.Game.GameFrame;
+import main.game.GameFrame;
 
 public class Main {
     public static void main(String[] args) {

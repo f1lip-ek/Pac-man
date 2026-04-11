@@ -1,4 +1,4 @@
-package main.GameOver;
+package main.gameOver;
 
 import javax.swing.*;
 
