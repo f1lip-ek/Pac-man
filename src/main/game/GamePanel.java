@@ -45,6 +45,5 @@ public class GamePanel extends JPanel {
 
 
         g.fillRect((int) player.getX(), (int) player.getY(), 50, 50);
-        repaint();
     }
 }

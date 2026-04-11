@@ -8,7 +8,7 @@ public class Player {
 
     private int lives = 3;
 
-    private float speed = 0.5f;
+    private float speed = 2f;
     private float x = 0;
     private float y = 0;
 
@@ -22,6 +22,10 @@ public class Player {
         }else {
             dead = true;
         }
+    }
+
+    public boolean isDead(){
+        return dead;
     }
 
     public Movement getMovement() {
