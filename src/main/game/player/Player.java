@@ -8,7 +8,7 @@ public class Player {
 
     private int lives = 3;
 
-    private float speed = 2f;
+    private float speed = 1.5f;
     private float x = 0;
     private float y = 0;
 
@@ -49,13 +49,13 @@ public class Player {
     }
 
     public void setX(float num) {
-        if ((x + num) > 0 && (x + num) < GamePanel.WIDTH - 50) {
+        if ((x + num) > 0 && (x + num) < GamePanel.PANEL_WIDTH - 40) {
             this.x += num;
         }
     }
 
     public void setY(float num) {
-        if ((y + num) < GamePanel.HEIGHT - 50 && (y + num) > 0) {
+        if ((y + num) < GamePanel.PANEL_HEIGHT - 40 && (y + num) > 0) {
             this.y += num;
         }
     }
