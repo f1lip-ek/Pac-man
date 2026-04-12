@@ -48,12 +48,13 @@ public class Level {
         g.setColor(Color.BLUE);
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                if(imgArray[i][j] == 1){
-                    g.fillRect(j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, GamePanel.RECT_SIZE, GamePanel.RECT_SIZE);
-                }else if (imgArray[i][j] == 0){
-                    g.setColor(Color.BLACK);
-                    g.fillRect(j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, GamePanel.RECT_SIZE, GamePanel.RECT_SIZE);
-                    g.setColor(Color.BLUE);
+                switch (imgArray[i][j]){
+                    case 1 -> g.fillRect(j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, GamePanel.RECT_SIZE, GamePanel.RECT_SIZE);
+                    case 0, 2 -> {
+                        g.setColor(Color.BLACK);
+                        g.fillRect(j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, GamePanel.RECT_SIZE, GamePanel.RECT_SIZE);
+                        g.setColor(Color.BLUE);
+                    }
                 }
             }
         }
