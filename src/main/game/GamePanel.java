@@ -1,5 +1,6 @@
 package main.game;
 
+import main.game.levels.Level;
 import main.game.player.Movement;
 import main.game.player.Player;
 
@@ -8,21 +9,24 @@ import java.awt.*;
 
 public class GamePanel extends JPanel {
 
-    public static final int HEIGHT = 600;
-    public static final int WIDTH = 800;
+    public static final int PANEL_HEIGHT = 600;
+    public static final int PANEL_WIDTH = 800;
+    public static final int RECT_SIZE = 40;
 
     private Player player;
 
     private MyKeyListener keyListener;
 
+    private Level level;
+
     public GamePanel(){
         player = new Player();
         this.keyListener = new MyKeyListener(this);
+        this.level = new Level(player);
 
         this.setFocusable(true);
 
-        this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        this.setBackground(Color.BLACK);
+        this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         this.addKeyListener(keyListener);
     }
 
@@ -34,7 +38,9 @@ public class GamePanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        g.setColor(Color.YELLOW);
+        level.draw(g);
+
+        g.setColor(new Color(255, 244, 0));
 
         switch (player.getMovement()){
             case Movement.UP -> player.setY(-player.getSpeed());
@@ -43,7 +49,6 @@ public class GamePanel extends JPanel {
             case Movement.RIGHT -> player.setX(player.getSpeed());
         }
 
-
-        g.fillRect((int) player.getX(), (int) player.getY(), 50, 50);
+        g.fillRect((int) player.getX(), (int) player.getY(), player.getSIZE(), player.getSIZE());
     }
 }

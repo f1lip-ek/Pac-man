@@ -1,5 +1,6 @@
 package main.game.player;
 import main.game.GamePanel;
+import main.game.levels.Level;
 
 public class Player {
 
@@ -7,6 +8,7 @@ public class Player {
     private boolean dead = false;
 
     private int lives = 3;
+    private final int SIZE = 38;
 
     private float speed = 1.5f;
     private float x = 0;
@@ -46,6 +48,10 @@ public class Player {
 
     public float getY(){
         return y;
+    }
+
+    public int getSIZE(){
+        return SIZE;
     }
 
     public void setX(float num) {
