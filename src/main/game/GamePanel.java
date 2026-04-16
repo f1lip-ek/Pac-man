@@ -20,7 +20,7 @@ public class GamePanel extends JPanel {
 
     public GamePanel(){
         player = new Player();
-        this.keyListener = new MyKeyListener(this);
+        this.keyListener = new MyKeyListener(player);
         this.level = new Level(player);
 
         player.setLevel(level);
