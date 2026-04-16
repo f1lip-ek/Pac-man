@@ -38,8 +38,8 @@ public class Level {
                     imgArray[i][j] = 0;
                 } else if (image.getRGB(j, i) == new Color(255, 244, 0).getRGB()) {
                     imgArray[i][j] = 2;
-                    player.setX(j * GamePanel.RECT_SIZE + 1, "");
-                    player.setY(i * GamePanel.RECT_SIZE + 1, "");
+                    player.setDefaultPositionX(j * GamePanel.RECT_SIZE);
+                    player.setDefaultPositionY(i * GamePanel.RECT_SIZE + 1);
                 }
             }
         }

@@ -4,7 +4,7 @@ import main.game.levels.Level;
 
 import java.awt.*;
 
-public class Player {
+public class Player{
 
     private Movement movement = Movement.UP;
     private boolean dead = false;
@@ -69,7 +69,7 @@ public class Player {
         }
     }
 
-    public void setX(float num, String text){
+    public void setDefaultPositionX(float num){
         this.x = num;
         updateHitBox();
     }
@@ -79,7 +79,7 @@ public class Player {
             this.y += num;
         }
     }
-    public void setY(float num, String text){
+    public void setDefaultPositionY(float num){
         this.y = num;
         updateHitBox();
     }
