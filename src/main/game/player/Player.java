@@ -6,7 +6,8 @@ import java.awt.*;
 
 public class Player{
 
-    private Movement movement = Movement.UP;
+    private Movement lastMovement = Movement.UP;
+    private Movement nextMovement = Movement.UP;
     private boolean dead = false;
 
     private int lives = 3;
@@ -39,12 +40,41 @@ public class Player{
         return dead;
     }
 
-    public Movement getMovement() {
-        return movement;
+    public Movement getLastMovement() {
+        return lastMovement;
     }
 
-    public void setMovement(Movement movement){
-        this.movement = movement;
+    public void setLastMovement(){
+        switch (nextMovement) {
+            case Movement.UP -> {
+                if (!level.isWall(hitbox.x, (int) (hitbox.y - speed)) &&
+                        !level.isWall(hitbox.x + hitbox.width - 1, (int) (hitbox.y - speed))){
+                    lastMovement = nextMovement;
+                }
+            }
+            case Movement.DOWN -> {
+                if (!level.isWall(hitbox.x, (int) (hitbox.y + hitbox.height - 1 + speed)) &&
+                        !level.isWall(hitbox.x + hitbox.width - 1, (int) (hitbox.y + hitbox.height - 1 + speed))) {
+                    lastMovement = nextMovement;
+                }
+            }
+            case Movement.LEFT -> {
+                if (!level.isWall((int) (hitbox.x - speed), hitbox.y) &&
+                        !level.isWall((int) (hitbox.x - speed), hitbox.y + hitbox.height - 1)){
+                    lastMovement = nextMovement;
+                }
+            }
+            case Movement.RIGHT -> {
+                if (!level.isWall((int) (hitbox.x + hitbox.width - 1 + speed), hitbox.y) &&
+                        !level.isWall((int) (hitbox.x + hitbox.width - 1 + speed), hitbox.y + hitbox.height - 1)){
+                    lastMovement = nextMovement;
+                }
+            }
+        }
+    }
+
+    public void setNextMovement(Movement nextMovement){
+        this.nextMovement = nextMovement;
     }
 
     public float getSpeed(){
@@ -85,7 +115,10 @@ public class Player{
     }
 
     public void updateMovement(){
-        switch (movement) {
+
+        setLastMovement();
+
+        switch (lastMovement) {
             case Movement.UP -> {
                 if (!level.isWall(hitbox.x, (int) (hitbox.y - speed)) &&
                     !level.isWall(hitbox.x + hitbox.width - 1, (int) (hitbox.y - speed))){
@@ -115,7 +148,7 @@ public class Player{
     }
 
     public void setHitbox(){
-        hitbox = new Rectangle((int)x, (int)y, GamePanel.RECT_SIZE-1, GamePanel.RECT_SIZE-1);
+        hitbox = new Rectangle((int)x, (int)y, GamePanel.RECT_SIZE, GamePanel.RECT_SIZE);
     }
     public void updateHitBox(){
         hitbox.x = (int)x;

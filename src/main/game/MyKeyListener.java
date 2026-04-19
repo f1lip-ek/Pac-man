@@ -21,12 +21,12 @@ public class MyKeyListener implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()){
-            case KeyEvent.VK_W, KeyEvent.VK_UP -> player.setMovement(Movement.UP);
-            case KeyEvent.VK_S, KeyEvent.VK_DOWN -> player.setMovement(Movement.DOWN);
-            case KeyEvent.VK_A, KeyEvent.VK_LEFT -> player.setMovement(Movement.LEFT);
-            case KeyEvent.VK_D, KeyEvent.VK_RIGHT -> player.setMovement(Movement.RIGHT);
+            case KeyEvent.VK_W, KeyEvent.VK_UP -> player.setNextMovement(Movement.UP);
+            case KeyEvent.VK_S, KeyEvent.VK_DOWN -> player.setNextMovement(Movement.DOWN);
+            case KeyEvent.VK_A, KeyEvent.VK_LEFT -> player.setNextMovement(Movement.LEFT);
+            case KeyEvent.VK_D, KeyEvent.VK_RIGHT -> player.setNextMovement(Movement.RIGHT);
         }
-        System.out.println(player.getMovement());
+        System.out.println(player.getLastMovement());
     }
 
     @Override
