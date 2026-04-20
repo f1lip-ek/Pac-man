@@ -1,5 +1,6 @@
 package main.game.player;
 import main.game.GamePanel;
+import main.game.StaticMethods;
 import main.game.levels.Level;
 
 import java.awt.*;
@@ -145,6 +146,15 @@ public class Player{
             }
         }
         updateHitBox();
+    }
+
+    public void draw(Graphics g){
+        switch (lastMovement) {
+            case Movement.UP -> g.drawImage(StaticMethods.getImage("/entities/pacman/pacman_up.png"), (int) x+5, (int) y+5, null);
+            case Movement.DOWN -> g.drawImage(StaticMethods.getImage("/entities/pacman/pacman_down.png"), (int) x+5, (int) y+5, null);
+            case Movement.LEFT -> g.drawImage(StaticMethods.getImage("/entities/pacman/pacman_left.png"), (int) x+5, (int) y+5, null);
+            case Movement.RIGHT -> g.drawImage(StaticMethods.getImage("/entities/pacman/pacman_right.png"), (int) x+5, (int) y+5, null);
+        }
     }
 
     public void setHitbox(){
