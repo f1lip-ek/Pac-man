@@ -1,13 +1,11 @@
 package main.game.levels;
 
 import main.game.GamePanel;
+import main.game.StaticMethods;
 import main.game.player.Player;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 
 public class Level {
 
@@ -22,7 +20,7 @@ public class Level {
     private CollisionMap collisionMap;
 
     public Level(Player player){
-        this.image = getImage();
+        this.image = StaticMethods.getImage("/maps/map_01.png");
         this.width = image.getWidth();
         this.height = image.getHeight();
         this.imgArray = new int[height][width];
@@ -40,6 +38,8 @@ public class Level {
                     imgArray[i][j] = 2;
                     player.setDefaultPositionX(j * GamePanel.RECT_SIZE);
                     player.setDefaultPositionY(i * GamePanel.RECT_SIZE + 1);
+                } else if (image.getRGB(j, i) == new Color(255, 0, 0).getRGB()) {
+                    imgArray[i][j] = 3;
                 }
             }
         }
@@ -52,7 +52,7 @@ public class Level {
             for (int j = 0; j < width; j++) {
                 switch (imgArray[i][j]){
                     case 1 -> g.fillRect(j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, GamePanel.RECT_SIZE, GamePanel.RECT_SIZE);
-                    case 0, 2 -> {
+                    case 0, 2, 3 -> {
                         g.setColor(new Color(0, 0, 0));
                         g.fillRect(j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, GamePanel.RECT_SIZE, GamePanel.RECT_SIZE);
                         g.setColor(new Color(0, 0, 255));
@@ -60,16 +60,6 @@ public class Level {
                 }
             }
         }
-    }
-
-    public BufferedImage getImage(){
-        BufferedImage img = null;
-        try(InputStream is = getClass().getResourceAsStream("/test.png")){
-            img = ImageIO.read(is);
-        } catch (IOException e) {
-            System.err.println("Error loading image: " + e.getMessage());
-        }
-        return img;
     }
 
     public boolean isWall(int x, int y){

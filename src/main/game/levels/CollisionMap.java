@@ -25,7 +25,7 @@ public class CollisionMap {
                 if (map[i][j] == 1){
                     collisionMap[i][j] = new Block(j* GamePanel.RECT_SIZE, (j*GamePanel.RECT_SIZE) + GamePanel.RECT_SIZE,
                             i*GamePanel.RECT_SIZE, (i*GamePanel.RECT_SIZE) + GamePanel.RECT_SIZE, true);
-                }else if (map[i][j] == 0 || map[i][j] == 2){
+                }else if (map[i][j] == 0 || map[i][j] == 2 || map[i][j] == 3){
                     collisionMap[i][j] = new Block(j* GamePanel.RECT_SIZE, (j*GamePanel.RECT_SIZE) + GamePanel.RECT_SIZE,
                             i*GamePanel.RECT_SIZE, (i*GamePanel.RECT_SIZE) + GamePanel.RECT_SIZE, false);
                 }else{

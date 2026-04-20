@@ -48,6 +48,8 @@ public class GamePanel extends JPanel {
 
         player.updateMovement();
 
-        g.fillRect((int) player.getX() + 5, (int) player.getY() + 5, player.getSIZE(), player.getSIZE());
+        g.drawImage(StaticMethods.getImage("/entities/pacman.png"), (int) player.getX()+5, (int) player.getY()+5, null);
+
+//        g.fillRect((int) player.getX() + 5, (int) player.getY() + 5, player.getSIZE(), player.getSIZE());
     }
 }
