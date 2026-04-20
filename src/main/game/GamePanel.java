@@ -44,12 +44,11 @@ public class GamePanel extends JPanel {
 
         level.draw(g);
 
-        g.setColor(new Color(255, 244, 0));
-
         player.updateMovement();
 
         player.draw(g);
 
+//        g.setColor(new Color(255, 244, 0));
 //        g.fillRect((int) player.getX() + 5, (int) player.getY() + 5, player.getSIZE(), player.getSIZE());
     }
 }
