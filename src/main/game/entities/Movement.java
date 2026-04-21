@@ -1,4 +1,4 @@
-package main.game.player;
+package main.game.entities;
 
 public enum Movement {
 

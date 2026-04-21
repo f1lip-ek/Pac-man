@@ -1,7 +1,7 @@
 package main.game;
 
-import main.game.player.Movement;
-import main.game.player.Player;
+import main.game.entities.Movement;
+import main.game.entities.Player;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

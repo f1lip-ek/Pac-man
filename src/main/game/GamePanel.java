@@ -1,8 +1,8 @@
 package main.game;
 
 import main.game.levels.Level;
-import main.game.player.Ghost;
-import main.game.player.Player;
+import main.game.entities.Ghost;
+import main.game.entities.Player;
 
 import javax.swing.*;
 import java.awt.*;

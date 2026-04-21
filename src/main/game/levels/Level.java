@@ -2,8 +2,8 @@ package main.game.levels;
 
 import main.game.GamePanel;
 import main.game.StaticMethods;
-import main.game.player.Ghost;
-import main.game.player.Player;
+import main.game.entities.Ghost;
+import main.game.entities.Player;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

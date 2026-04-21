@@ -1,4 +1,4 @@
-package main.game.player;
+package main.game.entities;
 import main.game.GamePanel;
 import main.game.StaticMethods;
 import main.game.levels.Level;
