@@ -2,6 +2,7 @@ package main.game.levels;
 
 import main.game.GamePanel;
 import main.game.StaticMethods;
+import main.game.player.Ghost;
 import main.game.player.Player;
 
 import java.awt.*;
@@ -11,6 +12,7 @@ public class Level {
 
     private BufferedImage image;
     private Player player;
+    private Ghost[] ghosts;
 
     private int[][] imgArray;
 
@@ -19,15 +21,17 @@ public class Level {
 
     private CollisionMap collisionMap;
 
-    public Level(Player player){
+    public Level(Player player, Ghost[] ghosts){
         this.image = StaticMethods.getImage("/maps/map_01.png");
         this.width = image.getWidth();
         this.height = image.getHeight();
         this.imgArray = new int[height][width];
         this.player = player;
+        this.ghosts = ghosts;
     }
 
     public void setImgArray(){
+        int ghostIndex = 0;
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 if(image.getRGB(j, i) == new Color(0, 0, 255).getRGB()){
@@ -40,6 +44,9 @@ public class Level {
                     player.setDefaultPositionY(i * GamePanel.RECT_SIZE + 1);
                 } else if (image.getRGB(j, i) == new Color(255, 0, 0).getRGB()) {
                     imgArray[i][j] = 3;
+                    ghosts[ghostIndex].setDefaultPositionX(j * GamePanel.RECT_SIZE);
+                    ghosts[ghostIndex].setDefaultPositionY(i * GamePanel.RECT_SIZE + 1);
+                    ghostIndex++;
                 }
             }
         }
