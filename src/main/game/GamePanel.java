@@ -23,7 +23,7 @@ public class GamePanel extends JPanel {
     private Level level;
 
     public GamePanel(){
-        player = new Player();
+        this.player = new Player();
         this.ghosts = new Ghost[4];
         setGhosts();
         this.keyListener = new MyKeyListener(player);
@@ -45,6 +45,14 @@ public class GamePanel extends JPanel {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public Ghost[] getGhosts() {
+        return ghosts;
+    }
+
+    public Level getLevel() {
+        return level;
     }
 
     public void setGhosts(){

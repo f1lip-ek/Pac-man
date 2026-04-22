@@ -3,11 +3,13 @@ package main.game;
 public class GameLoop implements Runnable{
 
     private GamePanel panel;
+    private GameFrame gameFrame;
 
     private final int FPS = 120;
 
-    public GameLoop(GamePanel panel){
+    public GameLoop(GamePanel panel, GameFrame gameFrame){
         this.panel = panel;
+        this.gameFrame = gameFrame;
     }
 
     @Override
@@ -25,6 +27,8 @@ public class GameLoop implements Runnable{
                 panel.repaint();
                 lastTime = System.nanoTime();
                 frames++;
+                collide();
+                panel.getPlayer().death();
             }
 
 
@@ -34,7 +38,26 @@ public class GameLoop implements Runnable{
                 frames = 0;
             }
 
+
         }
 
+        System.err.println("Game Over");
+        gameFrame.viewEnd();
+    }
+
+    public void collide(){
+        for (int i = 0; i < panel.getGhosts().length; i++) {
+            if (panel.getPlayer().getHitbox().intersects(panel.getGhosts()[i].getHitbox())){
+                panel.getPlayer().decreaseLives();
+                System.err.println(panel.getPlayer().getLives());
+                panel.getLevel().setImgArray();
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    System.err.println("Error: " + e.getMessage());
+                }
+                break;
+            }
+        }
     }
 }

@@ -25,12 +25,20 @@ public class Player{
         setHitbox();
     }
 
+    public void decreaseLives(){
+        if (lives > 0) lives--;
+    }
+
     public void death(){
-        if (lives > 0){
-            lives--;
-        }else {
-            dead = true;
-        }
+        if (lives == 0) dead = true;
+    }
+
+    public int getLives() {
+        return lives;
+    }
+
+    public Rectangle getHitbox() {
+        return hitbox;
     }
 
     public void setLevel(Level level){
@@ -158,7 +166,7 @@ public class Player{
     }
 
     public void setHitbox(){
-        hitbox = new Rectangle((int)x, (int)y, GamePanel.RECT_SIZE, GamePanel.RECT_SIZE);
+        hitbox = new Rectangle((int)x-5, (int)y-5, GamePanel.RECT_SIZE, GamePanel.RECT_SIZE);
     }
     public void updateHitBox(){
         hitbox.x = (int)x;

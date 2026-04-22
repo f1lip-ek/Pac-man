@@ -35,6 +35,10 @@ public class Ghost {
         this.level = level;
     }
 
+    public Rectangle getHitbox(){
+        return hitbox;
+    }
+
     public void setX(float num) {
         if ((x + num) > 0 && (x + num) < GamePanel.PANEL_WIDTH - hitbox.width) {
             this.x += num;
