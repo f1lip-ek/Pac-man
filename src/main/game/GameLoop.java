@@ -24,6 +24,7 @@ public class GameLoop implements Runnable{
         while(!panel.getPlayer().isDead()){
 
             if (System.nanoTime() - lastTime >= timePerTick){
+                panel.updateMovements();
                 panel.repaint();
                 lastTime = System.nanoTime();
                 frames++;

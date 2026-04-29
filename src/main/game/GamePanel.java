@@ -67,18 +67,22 @@ public class GamePanel extends JPanel {
 
         level.draw(g);
 
-        player.updateMovement();
-
         player.draw(g);
 
-        updateGhosts(g);
+        drawGhosts(g);
 //        g.setColor(new Color(255, 244, 0));
 //        g.fillRect((int) player.getX() + 5, (int) player.getY() + 5, player.getSIZE(), player.getSIZE());
     }
 
-    public void updateGhosts(Graphics g){
+    public void drawGhosts(Graphics g){
         for (int i = 0; i < ghosts.length; i++) {
             ghosts[i].draw(g);
+        }
+    }
+
+    public void updateMovements(){
+        player.updateMovement();
+        for (int i = 0; i < ghosts.length; i++) {
             ghosts[i].updateMovement();
         }
     }
