@@ -5,6 +5,7 @@ import main.game.StaticMethods;
 import main.game.levels.Level;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -25,9 +26,12 @@ public class Ghost {
     private Level level;
     private Random rd;
 
+    private BufferedImage img;
+
     public Ghost(String name){
         setHitbox();
         this.name = name;
+        this.img = StaticMethods.getImage("/entities/" + name + ".png");
         this.rd = new Random();
     }
 
@@ -104,7 +108,9 @@ public class Ghost {
     }
 
     public void draw(Graphics g){
-        g.drawImage(StaticMethods.getImage("/entities/" + name + ".png"), (int)x + 5, (int)y + 5, null);
+        g.drawImage(img, (int)x + 5, (int)y + 5, null);
+//        g.setColor(Color.WHITE);
+//        g.drawRect((int)x + 5, (int)y + 5, 30, 30);
     }
 
     public void setHitbox(){

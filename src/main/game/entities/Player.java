@@ -4,12 +4,15 @@ import main.game.StaticMethods;
 import main.game.levels.Level;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Player{
 
     private Movement lastMovement = Movement.UP;
     private Movement nextMovement = Movement.UP;
     private boolean dead = false;
+
+    private BufferedImage[] img = new BufferedImage[4];
 
     private int lives = 3;
     private final int SIZE = 30;
@@ -23,6 +26,14 @@ public class Player{
 
     public Player(){
         setHitbox();
+        setImgs();
+    }
+
+    private void setImgs(){
+        String[] arr = {"up", "down", "left", "right"};
+        for (int i = 0; i < img.length; i++) {
+            img[i] = StaticMethods.getImage("/entities/pacman/pacman_" + arr[i] + ".png");
+        }
     }
 
     public void decreaseLives(){
@@ -158,10 +169,10 @@ public class Player{
 
     public void draw(Graphics g){
         switch (lastMovement) {
-            case Movement.UP -> g.drawImage(StaticMethods.getImage("/entities/pacman/pacman_up.png"), (int) x+5, (int) y+5, null);
-            case Movement.DOWN -> g.drawImage(StaticMethods.getImage("/entities/pacman/pacman_down.png"), (int) x+5, (int) y+5, null);
-            case Movement.LEFT -> g.drawImage(StaticMethods.getImage("/entities/pacman/pacman_left.png"), (int) x+5, (int) y+5, null);
-            case Movement.RIGHT -> g.drawImage(StaticMethods.getImage("/entities/pacman/pacman_right.png"), (int) x+5, (int) y+5, null);
+            case Movement.UP -> g.drawImage(img[0], (int) x+5, (int) y+5, null);
+            case Movement.DOWN -> g.drawImage(img[1], (int) x+5, (int) y+5, null);
+            case Movement.LEFT -> g.drawImage(img[2], (int) x+5, (int) y+5, null);
+            case Movement.RIGHT -> g.drawImage(img[3], (int) x+5, (int) y+5, null);
         }
     }
 
