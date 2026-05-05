@@ -74,6 +74,12 @@ public class Level {
 //                        g.fillRect(j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, GamePanel.RECT_SIZE, GamePanel.RECT_SIZE);
 //                        g.setColor(new Color(0, 0, 255));
                         g.drawImage(textures[1], j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, null);
+                        if ((imgArray[i][j-1] == 1 && imgArray[i-1][j] == 1 && imgArray[i][j+1] != 1 && imgArray[i+1][j] != 1) //left up
+                                || (imgArray[i][j+1] == 1 && imgArray[i-1][j] == 1 && imgArray[i][j-1] != 1 && imgArray[i+1][j] != 1)  //right up
+                                || (imgArray[i][j+1] == 1 && imgArray[i+1][j] == 1 && imgArray[i][j-1] != 1 && imgArray[i-1][j] != 1) //right down
+                                || (imgArray[i-1][j] != 1 && imgArray[i][j+1] != 1 && imgArray[i+1][j] == 1 && imgArray[i][j-1] == 1) ) { //right down
+                            g.drawImage(textures[2], j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, null);
+                        }
                     }
                 }
             }
