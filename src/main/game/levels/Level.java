@@ -21,6 +21,8 @@ public class Level {
 
     private CollisionMap collisionMap;
 
+    private BufferedImage[] textures;
+
     public Level(Player player, Ghost[] ghosts){
         this.image = StaticMethods.getImage("/maps/map_01.png");
         this.width = image.getWidth();
@@ -28,6 +30,14 @@ public class Level {
         this.imgArray = new int[height][width];
         this.player = player;
         this.ghosts = ghosts;
+        this.textures = new BufferedImage[3];
+        setTextures();
+    }
+
+    public void setTextures(){
+        this.textures[0] = StaticMethods.getImage("/textures/way.png");
+        this.textures[1] = StaticMethods.getImage("/textures/smallPoint_way.png");
+        this.textures[2] = StaticMethods.getImage("/textures/bigPoint_way.png");
     }
 
     public void setImgArray(){
@@ -60,9 +70,10 @@ public class Level {
                 switch (imgArray[i][j]){
                     case 1 -> g.fillRect(j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, GamePanel.RECT_SIZE, GamePanel.RECT_SIZE);
                     case 0, 2, 3 -> {
-                        g.setColor(new Color(0, 0, 0));
-                        g.fillRect(j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, GamePanel.RECT_SIZE, GamePanel.RECT_SIZE);
-                        g.setColor(new Color(0, 0, 255));
+//                        g.setColor(new Color(0, 0, 0));
+//                        g.fillRect(j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, GamePanel.RECT_SIZE, GamePanel.RECT_SIZE);
+//                        g.setColor(new Color(0, 0, 255));
+                        g.drawImage(textures[1], j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, null);
                     }
                 }
             }
