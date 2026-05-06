@@ -15,6 +15,7 @@ public class Level {
     private Ghost[] ghosts;
 
     private int[][] imgArray;
+    private boolean[][] whereWasPlayer;
 
     private int width;
     private int height;
@@ -28,6 +29,7 @@ public class Level {
         this.width = image.getWidth();
         this.height = image.getHeight();
         this.imgArray = new int[height][width];
+        this.whereWasPlayer = new boolean[height][width];
         this.player = player;
         this.ghosts = ghosts;
         this.textures = new BufferedImage[3];
@@ -38,6 +40,10 @@ public class Level {
         this.textures[0] = StaticMethods.getImage("/textures/way.png");
         this.textures[1] = StaticMethods.getImage("/textures/smallPoint_way.png");
         this.textures[2] = StaticMethods.getImage("/textures/bigPoint_way.png");
+    }
+
+    public void setWhereWasPlayer(){
+        whereWasPlayer[(int) (player.getY()/GamePanel.RECT_SIZE)][(int) (player.getX()/GamePanel.RECT_SIZE)] = true;
     }
 
     public void setImgArray(){
@@ -73,12 +79,16 @@ public class Level {
 //                        g.setColor(new Color(0, 0, 0));
 //                        g.fillRect(j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, GamePanel.RECT_SIZE, GamePanel.RECT_SIZE);
 //                        g.setColor(new Color(0, 0, 255));
-                        g.drawImage(textures[1], j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, null);
-                        if ((imgArray[i][j-1] == 1 && imgArray[i-1][j] == 1 && imgArray[i][j+1] != 1 && imgArray[i+1][j] != 1) //left up
-                                || (imgArray[i][j+1] == 1 && imgArray[i-1][j] == 1 && imgArray[i][j-1] != 1 && imgArray[i+1][j] != 1)  //right up
-                                || (imgArray[i][j+1] == 1 && imgArray[i+1][j] == 1 && imgArray[i][j-1] != 1 && imgArray[i-1][j] != 1) //right down
-                                || (imgArray[i-1][j] != 1 && imgArray[i][j+1] != 1 && imgArray[i+1][j] == 1 && imgArray[i][j-1] == 1) ) { //right down
-                            g.drawImage(textures[2], j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, null);
+
+                        g.drawImage(textures[0], j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, null);
+                        if (!whereWasPlayer[i][j]) {
+                            g.drawImage(textures[1], j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, null);
+                            if ((imgArray[i][j-1] == 1 && imgArray[i-1][j] == 1 && imgArray[i][j+1] != 1 && imgArray[i+1][j] != 1) //left up
+                                    || (imgArray[i][j+1] == 1 && imgArray[i-1][j] == 1 && imgArray[i][j-1] != 1 && imgArray[i+1][j] != 1)  //right up
+                                    || (imgArray[i][j+1] == 1 && imgArray[i+1][j] == 1 && imgArray[i][j-1] != 1 && imgArray[i-1][j] != 1) //right down
+                                    || (imgArray[i-1][j] != 1 && imgArray[i][j+1] != 1 && imgArray[i+1][j] == 1 && imgArray[i][j-1] == 1) ) { //right down
+                                g.drawImage(textures[2], j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, null);
+                            }
                         }
                     }
                 }
