@@ -23,7 +23,7 @@ public class GameOverPanel extends JPanel {
     private String[] endingText;
 
     public GameOverPanel(GameOverFrame gameOverFrame){
-        this.endingText = new String[]{"You", "Won", "You Win!"};
+        this.endingText = new String[]{"Game", "Over", "You Win!"};
         this.gameOverFrame = gameOverFrame;
         this.label = new JLabel();
         this.label2 = new JLabel();
