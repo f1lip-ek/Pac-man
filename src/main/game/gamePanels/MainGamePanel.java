@@ -36,6 +36,8 @@ public class MainGamePanel extends JPanel {
         this.setPreferredSize(new Dimension(GamePanel.PANEL_WIDTH, GamePanel.PANEL_HEIGHT));
         this.addKeyListener(keyListener);
 
+        this.setOpaque(true);
+
         level.setImgArray();
         System.out.println(level);
     }

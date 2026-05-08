@@ -27,6 +27,10 @@ public class GameLoop implements Runnable{
                 panel.getMainGamePanel().updateMovements();
                 panel.getMainGamePanel().getLevel().setWhereWasPlayer();
                 panel.getMainGamePanel().repaint();
+
+                panel.getHealthPanel().setHealth(panel.getMainGamePanel().getPlayer().getLives());
+                panel.getHealthPanel().repaint();
+
                 lastTime = System.nanoTime();
                 frames++;
                 collide();
