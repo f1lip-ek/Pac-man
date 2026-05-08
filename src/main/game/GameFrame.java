@@ -30,9 +30,9 @@ public class GameFrame extends JFrame {
         this.pack();
     }
 
-    public void viewEnd(){
+    public void viewEnd(int score, int ending){
         this.dispose();
-        this.gameOverFrame.view();
+        this.gameOverFrame.view(score, ending);
     }
 
     public static void view(){

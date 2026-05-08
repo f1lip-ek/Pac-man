@@ -118,6 +118,17 @@ public class Level {
         return collisionMap.getBlock(x, y).isInside(x, y);
     }
 
+    public boolean wasPlayerEverywhere(){
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                if (imgArray[i][j] != 1 &&!whereWasPlayer[i][j]){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     @Override
     public String toString(){
         String text = "";

@@ -17,10 +17,17 @@ public class GameOverPanel extends JPanel {
 
     private GameOverFrame gameOverFrame;
 
+    private int score;
+    private int ending;
+
+    private String[] endingText;
+
     public GameOverPanel(GameOverFrame gameOverFrame){
+        this.endingText = new String[]{"You", "Won", "You Win!"};
         this.gameOverFrame = gameOverFrame;
-        this.label = new JLabel("Game");
-        this.label2 = new JLabel("Over");
+        this.label = new JLabel();
+        this.label2 = new JLabel();
+        setEndingText();
 
         this.playAgainButton = new JButton("Play Again");
         this.exitButton = new JButton("Exit");
@@ -30,6 +37,16 @@ public class GameOverPanel extends JPanel {
         this.setBackground(Color.BLACK);
         this.setLabels();
         this.setButtons();
+    }
+
+    public void setEndingText(){
+        if (ending == 2) { // lose
+            this.label.setText(endingText[0]);
+            this.label2.setText(endingText[1]);
+        } else if (ending == 1) { // win
+            this.label.setText(endingText[2]);
+            this.label2.setText(Integer.toString(score));
+        }
     }
 
     public void setLabels(){
@@ -60,6 +77,11 @@ public class GameOverPanel extends JPanel {
         this.add(panel);
     }
 
+    public void setNums(int score, int ending){
+        this.score = score;
+        this.ending = ending;
+    }
+
     public void setButtons(){
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(GamePanel.PANEL_WIDTH, GamePanel.PANEL_HEIGHT/5));
@@ -80,4 +102,8 @@ public class GameOverPanel extends JPanel {
         this.add(panel);
     }
 
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+    }
 }

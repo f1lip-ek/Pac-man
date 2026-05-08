@@ -17,7 +17,10 @@ public class GameOverFrame extends JFrame {
         this.pack();
     }
 
-    public void view(){
+    public void view(int score, int ending){
+        this.gameOverPanel.setNums(score, ending);
+        this.gameOverPanel.setEndingText();
+        this.gameOverPanel.repaint();
         this.setVisible(true);
     }
 }

@@ -21,7 +21,7 @@ public class GameLoop implements Runnable{
         int frames = 0;
         long timer = System.currentTimeMillis();
 
-        while(!panel.getPlayer().isDead()){
+        while(!panel.getPlayer().isDead() && !panel.getLevel().wasPlayerEverywhere()){
 
             if (System.nanoTime() - lastTime >= timePerTick){
                 panel.updateMovements();
@@ -43,8 +43,13 @@ public class GameLoop implements Runnable{
 
         }
 
-        System.err.println("Game Over");
-        gameFrame.viewEnd();
+        if (panel.getPlayer().isDead()) {
+            System.err.println("Game Over");
+            gameFrame.viewEnd(panel.getPlayer().getScore(), 2);
+        } else {
+            System.err.println("You Win");
+            gameFrame.viewEnd(panel.getPlayer().getScore(), 1);
+        }
     }
 
     public void collide(){
