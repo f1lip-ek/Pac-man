@@ -21,6 +21,8 @@ public class Player{
     private float x = 0;
     private float y = 0;
 
+    private int score = 0;
+
     private Rectangle hitbox;
     private Level level;
 
@@ -34,6 +36,20 @@ public class Player{
         for (int i = 0; i < img.length; i++) {
             img[i] = StaticMethods.getImage("/entities/pacman/pacman_" + arr[i] + ".png");
         }
+    }
+
+    public void increaseScore(){
+        score += 10;
+        System.out.println(10);
+    }
+
+    public void bigIncreaseScore(){
+        score += 50;
+        System.out.println(50);
+    }
+
+    public int getScore(){
+        return score;
     }
 
     public void decreaseLives(){

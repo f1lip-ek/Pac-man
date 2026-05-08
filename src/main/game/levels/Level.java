@@ -43,7 +43,18 @@ public class Level {
     }
 
     public void setWhereWasPlayer(){
-        whereWasPlayer[(int) (player.getY()/GamePanel.RECT_SIZE)][(int) (player.getX()/GamePanel.RECT_SIZE)] = true;
+        int x = (int) (player.getX()/GamePanel.RECT_SIZE);
+        int y = (int) (player.getY()/GamePanel.RECT_SIZE);
+
+        if (!whereWasPlayer[y][x]){
+            whereWasPlayer[y][x] = true;
+            if (getBigPoint(x, y)) {
+                player.bigIncreaseScore();
+            } else {
+                player.increaseScore();
+            }
+            System.out.println(player.getScore());
+        }
     }
 
     public void setImgArray(){
@@ -83,10 +94,7 @@ public class Level {
                         g.drawImage(textures[0], j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, null);
                         if (!whereWasPlayer[i][j]) {
                             g.drawImage(textures[1], j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, null);
-                            if ((imgArray[i][j-1] == 1 && imgArray[i-1][j] == 1 && imgArray[i][j+1] != 1 && imgArray[i+1][j] != 1) //left up
-                                    || (imgArray[i][j+1] == 1 && imgArray[i-1][j] == 1 && imgArray[i][j-1] != 1 && imgArray[i+1][j] != 1)  //right up
-                                    || (imgArray[i][j+1] == 1 && imgArray[i+1][j] == 1 && imgArray[i][j-1] != 1 && imgArray[i-1][j] != 1) //right down
-                                    || (imgArray[i-1][j] != 1 && imgArray[i][j+1] != 1 && imgArray[i+1][j] == 1 && imgArray[i][j-1] == 1) ) { //right down
+                            if (getBigPoint(j, i)) {
                                 g.drawImage(textures[2], j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, null);
                             }
                         }
@@ -94,6 +102,16 @@ public class Level {
                 }
             }
         }
+    }
+
+    public boolean getBigPoint(int x, int y){
+        if ((imgArray[y][x-1] == 1 && imgArray[y-1][x] == 1 && imgArray[y][x+1] != 1 && imgArray[y+1][x] != 1) //left up
+                || (imgArray[y][x+1] == 1 && imgArray[y-1][x] == 1 && imgArray[y][x-1] != 1 && imgArray[y+1][x] != 1)  //right up
+                || (imgArray[y][x+1] == 1 && imgArray[y+1][x] == 1 && imgArray[y][x-1] != 1 && imgArray[y-1][x] != 1) //right down
+                || (imgArray[y-1][x] != 1 && imgArray[y][x+1] != 1 && imgArray[y+1][x] == 1 && imgArray[y][x-1] == 1) ) { //right down
+            return true;
+        }
+        return false;
     }
 
     public boolean isWall(int x, int y){
