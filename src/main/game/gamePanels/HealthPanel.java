@@ -30,7 +30,7 @@ public class HealthPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         for (int i = 0; i < health; i++) {
-            g.drawImage(image, i*(GamePanel.RECT_SIZE + 10), 0, 40, 40, null);
+            g.drawImage(image, 10 + i*(GamePanel.RECT_SIZE + 10), 0, 40, 40, null);
         }
     }
 

@@ -28,8 +28,11 @@ public class GameLoop implements Runnable{
                 panel.getMainGamePanel().getLevel().setWhereWasPlayer();
                 panel.getMainGamePanel().repaint();
 
-                panel.getHealthPanel().setHealth(panel.getMainGamePanel().getPlayer().getLives());
-                panel.getHealthPanel().repaint();
+//                panel.getHealthPanel().setHealth(panel.getMainGamePanel().getPlayer().getLives());
+//                panel.getHealthPanel().repaint();
+
+                panel.getPointPanel().setPoints(panel.getMainGamePanel().getPlayer().getScore());
+                panel.getPointPanel().repaint();
 
                 lastTime = System.nanoTime();
                 frames++;
@@ -60,6 +63,8 @@ public class GameLoop implements Runnable{
         for (int i = 0; i < panel.getMainGamePanel().getGhosts().length; i++) {
             if (panel.getMainGamePanel().getPlayer().getHitbox().intersects(panel.getMainGamePanel().getGhosts()[i].getHitbox())){
                 panel.getMainGamePanel().getPlayer().decreaseLives();
+                panel.getHealthPanel().setHealth(panel.getMainGamePanel().getPlayer().getLives());
+                panel.getHealthPanel().repaint();
                 System.err.println(panel.getMainGamePanel().getPlayer().getLives());
                 panel.getMainGamePanel().getLevel().setImgArray();
                 try {
