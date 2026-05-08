@@ -21,16 +21,16 @@ public class GameLoop implements Runnable{
         int frames = 0;
         long timer = System.currentTimeMillis();
 
-        while(!panel.getPlayer().isDead() && !panel.getLevel().wasPlayerEverywhere()){
+        while(!panel.getMainGamePanel().getPlayer().isDead() && !panel.getMainGamePanel().getLevel().wasPlayerEverywhere()){
 
             if (System.nanoTime() - lastTime >= timePerTick){
-                panel.updateMovements();
-                panel.getLevel().setWhereWasPlayer();
-                panel.repaint();
+                panel.getMainGamePanel().updateMovements();
+                panel.getMainGamePanel().getLevel().setWhereWasPlayer();
+                panel.getMainGamePanel().repaint();
                 lastTime = System.nanoTime();
                 frames++;
                 collide();
-                panel.getPlayer().death();
+                panel.getMainGamePanel().getPlayer().death();
             }
 
 
@@ -43,21 +43,21 @@ public class GameLoop implements Runnable{
 
         }
 
-        if (panel.getPlayer().isDead()) {
+        if (panel.getMainGamePanel().getPlayer().isDead()) {
             System.err.println("Game Over");
-            gameFrame.viewEnd(panel.getPlayer().getScore(), 2);
+            gameFrame.viewEnd(panel.getMainGamePanel().getPlayer().getScore(), 2);
         } else {
             System.err.println("You Win");
-            gameFrame.viewEnd(panel.getPlayer().getScore(), 1);
+            gameFrame.viewEnd(panel.getMainGamePanel().getPlayer().getScore(), 1);
         }
     }
 
     public void collide(){
-        for (int i = 0; i < panel.getGhosts().length; i++) {
-            if (panel.getPlayer().getHitbox().intersects(panel.getGhosts()[i].getHitbox())){
-                panel.getPlayer().decreaseLives();
-                System.err.println(panel.getPlayer().getLives());
-                panel.getLevel().setImgArray();
+        for (int i = 0; i < panel.getMainGamePanel().getGhosts().length; i++) {
+            if (panel.getMainGamePanel().getPlayer().getHitbox().intersects(panel.getMainGamePanel().getGhosts()[i].getHitbox())){
+                panel.getMainGamePanel().getPlayer().decreaseLives();
+                System.err.println(panel.getMainGamePanel().getPlayer().getLives());
+                panel.getMainGamePanel().getLevel().setImgArray();
                 try {
                     Thread.sleep(2000);
                 } catch (InterruptedException e) {

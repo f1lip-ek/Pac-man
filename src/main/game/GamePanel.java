@@ -1,5 +1,6 @@
 package main.game;
 
+import main.game.gamePanels.MainGamePanel;
 import main.game.levels.Level;
 import main.game.entities.Ghost;
 import main.game.entities.Player;
@@ -13,77 +14,15 @@ public class GamePanel extends JPanel {
     public static final int PANEL_WIDTH = 800;
     public static final int RECT_SIZE = 40;
 
-    private Player player;
-
-    private Ghost[] ghosts;
-    private String[] ghostNames = {"blinky", "pinky", "inky", "clyde"};
-
-    private MyKeyListener keyListener;
-
-    private Level level;
+    private MainGamePanel mainGamePanel;
 
     public GamePanel(){
-        this.player = new Player();
-        this.ghosts = new Ghost[4];
-        setGhosts();
-        this.keyListener = new MyKeyListener(player);
-        this.level = new Level(player, ghosts);
-
-        player.setLevel(level);
-        for (int i = 0; i < ghosts.length; i++) {
-            ghosts[i].setLevel(level);
-        }
-
-        this.setFocusable(true);
-
+        this.mainGamePanel = new MainGamePanel();
         this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
-        this.addKeyListener(keyListener);
-
-        level.setImgArray();
-        System.out.println(level);
+        this.add(mainGamePanel);
     }
 
-    public Player getPlayer() {
-        return player;
-    }
-
-    public Ghost[] getGhosts() {
-        return ghosts;
-    }
-
-    public Level getLevel() {
-        return level;
-    }
-
-    public void setGhosts(){
-        for (int i = 0; i < ghostNames.length; i++) {
-            this.ghosts[i] = new Ghost(ghostNames[i]);
-        }
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
-        level.draw(g);
-
-        player.draw(g);
-
-        drawGhosts(g);
-//        g.setColor(new Color(255, 244, 0));
-//        g.fillRect((int) player.getX() + 5, (int) player.getY() + 5, player.getSIZE(), player.getSIZE());
-    }
-
-    public void drawGhosts(Graphics g){
-        for (int i = 0; i < ghosts.length; i++) {
-            ghosts[i].draw(g);
-        }
-    }
-
-    public void updateMovements(){
-        player.updateMovement();
-        for (int i = 0; i < ghosts.length; i++) {
-            ghosts[i].updateMovement();
-        }
+    public MainGamePanel getMainGamePanel() {
+        return mainGamePanel;
     }
 }
