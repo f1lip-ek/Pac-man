@@ -53,7 +53,6 @@ public class Level {
             } else {
                 player.increaseScore();
             }
-            System.out.println(player.getScore());
         }
     }
 

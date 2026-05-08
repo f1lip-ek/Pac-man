@@ -40,12 +40,10 @@ public class Player{
 
     public void increaseScore(){
         score += 10;
-        System.out.println(10);
     }
 
     public void bigIncreaseScore(){
         score += 50;
-        System.out.println(50);
     }
 
     public int getScore(){
