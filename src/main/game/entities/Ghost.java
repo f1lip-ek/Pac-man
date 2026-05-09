@@ -22,21 +22,28 @@ public class Ghost {
 
     private String name;
 
+    private BufferedImage[] img = new BufferedImage[4];
+
     private Rectangle hitbox;
     private Level level;
     private Random rd;
 
-    private BufferedImage img;
-
     public Ghost(String name){
         setHitbox();
         this.name = name;
-        this.img = StaticMethods.getImage("/entities/" + name + ".png");
         this.rd = new Random();
+        setImgs();
     }
 
     public void setLevel(Level level){
         this.level = level;
+    }
+
+    private void setImgs(){
+        String[] arr = {"up", "down", "left", "right"};
+        for (int i = 0; i < img.length; i++) {
+            img[i] = StaticMethods.getImage("/entities/" + name + "/" + name + "_" + arr[i] + ".png");
+        }
     }
 
     public Rectangle getHitbox(){
@@ -108,7 +115,12 @@ public class Ghost {
     }
 
     public void draw(Graphics g){
-        g.drawImage(img, (int)x + 5, (int)y + 5, null);
+        switch (lastMovement) {
+            case Movement.UP -> g.drawImage(img[0], (int) x+5, (int) y+5, null);
+            case Movement.DOWN -> g.drawImage(img[1], (int) x+5, (int) y+5, null);
+            case Movement.LEFT -> g.drawImage(img[2], (int) x+5, (int) y+5, null);
+            case Movement.RIGHT -> g.drawImage(img[3], (int) x+5, (int) y+5, null);
+        }
 //        g.setColor(Color.WHITE);
 //        g.drawRect((int)x + 5, (int)y + 5, 30, 30);
     }
