@@ -20,6 +20,9 @@ public class Ghost {
     private float x = 0;
     private float y = 0;
 
+    private float defaultX = 0;
+    private float defaultY = 0;
+
     private String name;
 
     private BufferedImage[] img = new BufferedImage[4];
@@ -46,6 +49,11 @@ public class Ghost {
         }
     }
 
+    public void setDefaultXY(float defaultX, float defaultY) {
+        this.defaultX = defaultX;
+        this.defaultY = defaultY;
+    }
+
     public Rectangle getHitbox(){
         return hitbox;
     }
@@ -56,18 +64,17 @@ public class Ghost {
         }
     }
 
-    public void setDefaultPositionX(float num){
-        this.x = num;
-        updateHitBox();
-    }
-
     public void setY(float num) {
         if ((y + num) < GamePanel.PANEL_HEIGHT - hitbox.height && (y + num) > 0) {
             this.y += num;
         }
     }
-    public void setDefaultPositionY(float num){
-        this.y = num;
+
+    public void setDefaultPosition(float x, float y){
+        this.x = x;
+        this.y = y;
+        this.defaultX = x;
+        this.defaultY = y;
         updateHitBox();
     }
 

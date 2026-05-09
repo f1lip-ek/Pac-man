@@ -70,8 +70,7 @@ public class Level {
                     player.setDefaultPositionY(i * GamePanel.RECT_SIZE + 1);
                 } else if (image.getRGB(j, i) == new Color(255, 0, 0).getRGB()) {
                     imgArray[i][j] = 3;
-                    ghosts[ghostIndex].setDefaultPositionX(j * GamePanel.RECT_SIZE);
-                    ghosts[ghostIndex].setDefaultPositionY(i * GamePanel.RECT_SIZE + 1);
+                    ghosts[ghostIndex].setDefaultPosition(j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE + 1);
                     ghostIndex++;
                 }
             }
