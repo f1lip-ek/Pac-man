@@ -57,6 +57,8 @@ public class Ghost {
     public void setDefaultXY() {
         this.x = this.defaultX;
         this.y = this.defaultY;
+        updateHitBox();
+        updateMovement();
     }
 
     public void setWasHaunted(boolean wasHaunted) {
