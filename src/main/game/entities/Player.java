@@ -21,7 +21,12 @@ public class Player{
     private float x = 0;
     private float y = 0;
 
+    private float defaultX = 0;
+    private float defaultY = 0;
+
     private int score = 0;
+
+    private boolean isHunting = false;
 
     private Rectangle hitbox;
     private Level level;
@@ -43,7 +48,12 @@ public class Player{
     }
 
     public void bigIncreaseScore(){
-        score += 50;
+        this.score += 50;
+        this.isHunting = true;
+    }
+
+    public void ghostsIncreaseScore(){
+        this.score += 200;
     }
 
     public int getScore(){
@@ -77,6 +87,16 @@ public class Player{
     public Movement getLastMovement() {
         return lastMovement;
     }
+
+    public boolean isHunting() {
+        return isHunting;
+    }
+
+    public void setHunting(boolean hunting) {
+        isHunting = hunting;
+    }
+
+
 
     public void setLastMovement(){
         switch (nextMovement) {
@@ -146,6 +166,22 @@ public class Player{
     public void setDefaultPositionY(float num){
         this.y = num;
         updateHitBox();
+    }
+
+    public void setDefaultPosition(float x, float y){
+        this.x = x;
+        this.y = y;
+        this.defaultX = x;
+        this.defaultY = y;
+        updateHitBox();
+    }
+
+    public float getDefaultX() {
+        return defaultX;
+    }
+
+    public float getDefaultY() {
+        return defaultY;
     }
 
     public void updateMovement(){

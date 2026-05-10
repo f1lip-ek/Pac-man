@@ -50,6 +50,9 @@ public class Level {
             whereWasPlayer[y][x] = true;
             if (getBigPoint(x, y)) {
                 player.bigIncreaseScore();
+                for (int i = 0; i < ghosts.length; i++) {
+                    ghosts[i].setWasHaunted(false);
+                }
             } else {
                 player.increaseScore();
             }
@@ -66,8 +69,7 @@ public class Level {
                     imgArray[i][j] = 0;
                 } else if (image.getRGB(j, i) == new Color(255, 244, 0).getRGB()) {
                     imgArray[i][j] = 2;
-                    player.setDefaultPositionX(j * GamePanel.RECT_SIZE);
-                    player.setDefaultPositionY(i * GamePanel.RECT_SIZE + 1);
+                    player.setDefaultPosition(j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE + 1);
                 } else if (image.getRGB(j, i) == new Color(255, 0, 0).getRGB()) {
                     imgArray[i][j] = 3;
                     ghosts[ghostIndex].setDefaultPosition(j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE + 1);
@@ -106,8 +108,10 @@ public class Level {
         if ((imgArray[y][x-1] == 1 && imgArray[y-1][x] == 1 && imgArray[y][x+1] != 1 && imgArray[y+1][x] != 1) //left up
                 || (imgArray[y][x+1] == 1 && imgArray[y-1][x] == 1 && imgArray[y][x-1] != 1 && imgArray[y+1][x] != 1)  //right up
                 || (imgArray[y][x+1] == 1 && imgArray[y+1][x] == 1 && imgArray[y][x-1] != 1 && imgArray[y-1][x] != 1) //right down
-                || (imgArray[y-1][x] != 1 && imgArray[y][x+1] != 1 && imgArray[y+1][x] == 1 && imgArray[y][x-1] == 1) ) { //right down
-            return true;
+                || (imgArray[y-1][x] != 1 && imgArray[y][x+1] != 1 && imgArray[y+1][x] == 1 && imgArray[y][x-1] == 1)) { //right down
+            if (player.getDefaultX() != x * GamePanel.RECT_SIZE && player.getDefaultY() != y * GamePanel.RECT_SIZE){
+                return true;
+            }
         }
         return false;
     }

@@ -6,6 +6,7 @@ public class GameLoop implements Runnable{
     private GameFrame gameFrame;
 
     private final int FPS = 120;
+    private final int TIMER_HUNTING = 20*FPS;
 
     public GameLoop(GamePanel panel, GameFrame gameFrame){
         this.panel = panel;
@@ -21,6 +22,7 @@ public class GameLoop implements Runnable{
         int frames = 0;
         long timer = System.currentTimeMillis();
 
+        int counter = 0;
         while(!panel.getMainGamePanel().getPlayer().isDead() && !panel.getMainGamePanel().getLevel().wasPlayerEverywhere()){
 
             if (System.nanoTime() - lastTime >= timePerTick){
@@ -38,6 +40,18 @@ public class GameLoop implements Runnable{
                 frames++;
                 collide();
                 panel.getMainGamePanel().getPlayer().death();
+                if (panel.getMainGamePanel().getPlayer().isHunting() && counter < TIMER_HUNTING){
+                    System.out.println("Hunting");
+                    counter++;
+                } else if (counter >= TIMER_HUNTING) {
+                    panel.getMainGamePanel().getPlayer().setHunting(false);
+                    for (int i = 0; i < panel.getMainGamePanel().getGhosts().length; i++) {
+                        panel.getMainGamePanel().getGhosts()[i].setWasHaunted(false);
+                    }
+                    counter = 0;
+                } else {
+                    System.out.println("Not hunting");
+                }
             }
 
 
@@ -62,17 +76,29 @@ public class GameLoop implements Runnable{
     public void collide(){
         for (int i = 0; i < panel.getMainGamePanel().getGhosts().length; i++) {
             if (panel.getMainGamePanel().getPlayer().getHitbox().intersects(panel.getMainGamePanel().getGhosts()[i].getHitbox())){
-                panel.getMainGamePanel().getPlayer().decreaseLives();
-                panel.getHealthPanel().setHealth(panel.getMainGamePanel().getPlayer().getLives());
-                panel.getHealthPanel().repaint();
-                System.err.println(panel.getMainGamePanel().getPlayer().getLives());
-                panel.getMainGamePanel().getLevel().setImgArray();
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    System.err.println("Error: " + e.getMessage());
+                if (panel.getMainGamePanel().getPlayer().isHunting() && !panel.getMainGamePanel().getGhosts()[i].getWasHaunted()){
+                    panel.getMainGamePanel().getPlayer().ghostsIncreaseScore();
+                    try{
+                        Thread.sleep(250);
+                    } catch (InterruptedException e) {
+                        System.err.println(e.getMessage());
+                    }
+                    panel.getMainGamePanel().getGhosts()[i].setDefaultXY();
+                    panel.getMainGamePanel().getGhosts()[i].setWasHaunted(true);
+                } else {
+                    panel.getMainGamePanel().getPlayer().decreaseLives();
+                    panel.getHealthPanel().setHealth(panel.getMainGamePanel().getPlayer().getLives());
+                    panel.getHealthPanel().repaint();
+                    panel.getMainGamePanel().getPlayer().setHunting(false);
+                    System.err.println(panel.getMainGamePanel().getPlayer().getLives());
+                    panel.getMainGamePanel().getLevel().setImgArray();
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        System.err.println("Error: " + e.getMessage());
+                    }
+                    break;
                 }
-                break;
             }
         }
     }
