@@ -27,15 +27,17 @@ public class Ghost {
 
     private String name;
 
-    private BufferedImage[] img = new BufferedImage[4];
+    private BufferedImage[] img = new BufferedImage[5];
 
     private Rectangle hitbox;
     private Level level;
+    private Player player;
     private Random rd;
 
-    public Ghost(String name){
+    public Ghost(String name, Player player){
         setHitbox();
         this.name = name;
+        this.player = player;
         this.rd = new Random();
         setImgs();
     }
@@ -46,9 +48,10 @@ public class Ghost {
 
     private void setImgs(){
         String[] arr = {"up", "down", "left", "right"};
-        for (int i = 0; i < img.length; i++) {
+        for (int i = 0; i < arr.length; i++) {
             img[i] = StaticMethods.getImage("/entities/" + name + "/" + name + "_" + arr[i] + ".png");
         }
+        img[4] = StaticMethods.getImage("/entities/vulnerable/vulnerable.png");
     }
 
     public void setDefaultXY() {
@@ -144,11 +147,15 @@ public class Ghost {
     }
 
     public void draw(Graphics g){
-        switch (lastMovement) {
-            case Movement.UP -> g.drawImage(img[0], (int) x+5, (int) y+5, null);
-            case Movement.DOWN -> g.drawImage(img[1], (int) x+5, (int) y+5, null);
-            case Movement.LEFT -> g.drawImage(img[2], (int) x+5, (int) y+5, null);
-            case Movement.RIGHT -> g.drawImage(img[3], (int) x+5, (int) y+5, null);
+        if (!wasHaunted && player.isHunting()) {
+            g.drawImage(img[4], (int) x + 5, (int) y + 5, null);
+        }else if (!player.isHunting() || wasHaunted) {
+            switch (lastMovement) {
+                case Movement.UP -> g.drawImage(img[0], (int) x + 5, (int) y + 5, null);
+                case Movement.DOWN -> g.drawImage(img[1], (int) x + 5, (int) y + 5, null);
+                case Movement.LEFT -> g.drawImage(img[2], (int) x + 5, (int) y + 5, null);
+                case Movement.RIGHT -> g.drawImage(img[3], (int) x + 5, (int) y + 5, null);
+            }
         }
 //        g.setColor(Color.WHITE);
 //        g.drawRect((int)x + 5, (int)y + 5, 30, 30);

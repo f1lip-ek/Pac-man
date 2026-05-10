@@ -56,7 +56,7 @@ public class MainGamePanel extends JPanel {
 
     public void setGhosts(){
         for (int i = 0; i < ghostNames.length; i++) {
-            this.ghosts[i] = new Ghost(ghostNames[i]);
+            this.ghosts[i] = new Ghost(ghostNames[i], player);
         }
     }
 
