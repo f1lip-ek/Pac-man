@@ -1,9 +1,9 @@
 package main;
 
-import main.game.GameFrame;
+import main.start.StartFrame;
 
 public class Main {
     public static void main(String[] args) {
-        GameFrame.view();
+        StartFrame.view();
     }
 }
