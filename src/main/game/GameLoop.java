@@ -16,6 +16,15 @@ public class GameLoop implements Runnable{
     @Override
     public void run() {
 
+        panel.repaint();
+
+        try{
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
         double timePerTick = 1000000000.0 / FPS;
         long lastTime = System.nanoTime();
 
