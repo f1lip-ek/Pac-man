@@ -2,6 +2,7 @@ package main.gameOver;
 
 import main.game.GameFrame;
 import main.game.GamePanel;
+import main.start.StartFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -91,6 +92,10 @@ public class GameOverPanel extends JPanel {
         this.playAgainButton.addActionListener(_ -> {
             this.gameOverFrame.dispose();
             GameFrame.view();
+        });
+        this.goMainMenuButton.addActionListener(_ -> {
+            this.gameOverFrame.dispose();
+            StartFrame.view();
         });
         this.exitButton.addActionListener(_ -> {
             System.exit(0);
