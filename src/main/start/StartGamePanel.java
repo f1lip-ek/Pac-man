@@ -79,6 +79,7 @@ public class StartGamePanel extends JPanel {
     }
 
     public void playAgain(){
+        this.startFrame.setVisible(true);
         this.cardLayout.show(this, "play");
     }
 
