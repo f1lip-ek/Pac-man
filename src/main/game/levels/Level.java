@@ -70,10 +70,10 @@ public class Level {
                     imgArray[i][j] = 0;
                 } else if (image.getRGB(j, i) == new Color(255, 244, 0).getRGB()) {
                     imgArray[i][j] = 2;
-                    player.setDefaultPosition(j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE + 1);
+                    player.setDefaultPosition(j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE);
                 } else if (image.getRGB(j, i) == new Color(255, 0, 0).getRGB()) {
                     imgArray[i][j] = 3;
-                    ghosts[ghostIndex].setDefaultPosition(j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE + 1);
+                    ghosts[ghostIndex].setDefaultPosition(j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE);
                     ghostIndex++;
                 }
             }
