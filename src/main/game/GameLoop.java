@@ -50,7 +50,7 @@ public class GameLoop implements Runnable{
                 collide();
                 panel.getMainGamePanel().getPlayer().death();
                 if (panel.getMainGamePanel().getPlayer().isHunting() && counter < TIMER_HUNTING){
-                    System.out.println("Hunting");
+//                    System.out.println("Hunting");
                     counter++;
                 } else if (counter >= TIMER_HUNTING) {
                     panel.getMainGamePanel().getPlayer().setHunting(false);
@@ -59,7 +59,7 @@ public class GameLoop implements Runnable{
                     }
                     counter = 0;
                 } else {
-                    System.out.println("Not hunting");
+//                    System.out.println("Not hunting");
                 }
             }
 
