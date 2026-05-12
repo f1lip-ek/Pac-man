@@ -227,7 +227,7 @@ public class Player{
     }
 
     public void setHitbox(){
-        hitbox = new Rectangle((int)x-5, (int)y-5, GamePanel.RECT_SIZE, GamePanel.RECT_SIZE);
+        hitbox = new Rectangle((int)x, (int)y, GamePanel.RECT_SIZE, GamePanel.RECT_SIZE);
     }
     public void updateHitBox(){
         hitbox.x = (int)x;
