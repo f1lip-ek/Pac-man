@@ -2,12 +2,16 @@ package main.start;
 
 import main.game.GameFrame;
 import main.game.GamePanel;
-import main.gameOver.GameOverFrame;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class StartGamePanel extends JPanel {
+
+    private CardLayout cardLayout;
+
+    private JPanel mainPanel;
+    private MapChoose mapChoose;
 
     private JLabel label;
 
@@ -19,6 +23,11 @@ public class StartGamePanel extends JPanel {
 
     public StartGamePanel(StartFrame startFrame){
         this.startFrame = startFrame;
+        this.mainPanel = new JPanel();
+        this.mapChoose = new MapChoose(startFrame);
+
+        this.cardLayout = new CardLayout();
+        this.setLayout(cardLayout);
 
         this.label = new JLabel("Pac-man");
 
@@ -26,17 +35,22 @@ public class StartGamePanel extends JPanel {
         this.optionsButton = new JButton("Settings");
         this.exitButton = new JButton("Exit");
 
+        this.mainPanel.setPreferredSize(new Dimension(GamePanel.PANEL_WIDTH, GamePanel.PANEL_HEIGHT));
         this.setPreferredSize(new Dimension(GamePanel.PANEL_WIDTH, GamePanel.PANEL_HEIGHT));
-        this.setBackground(Color.BLACK);
+        this.mainPanel.setBackground(Color.BLACK);
         setLabel();
         setButtons();
+
+        this.add(mainPanel, "mainPanel");
+        this.add(mapChoose, "play");
+        this.cardLayout.show(this, "mainPanel");
     }
 
     public void setLabel(){
         this.label.setPreferredSize(new Dimension(GamePanel.PANEL_WIDTH, (GamePanel.PANEL_HEIGHT/5)*4));
         this.label.setFont(new Font("Arial", Font.BOLD, 50));
         this.label.setForeground(Color.WHITE);
-        this.add(label);
+        this.mainPanel.add(label);
     }
 
     public void setButtons() {
@@ -47,8 +61,7 @@ public class StartGamePanel extends JPanel {
         panel.setBackground(Color.BLACK);
 
         this.playButton.addActionListener(_ -> {
-            this.startFrame.dispose();
-            GameFrame.view();
+            this.cardLayout.show(this, "play");
         });
 
         this.optionsButton.addActionListener(_ -> {
@@ -61,8 +74,12 @@ public class StartGamePanel extends JPanel {
         panel.add(playButton);
         panel.add(optionsButton);
         panel.add(exitButton);
-        this.add(panel);
+        this.mainPanel.add(panel);
 
+    }
+
+    public void playAgain(){
+        this.cardLayout.show(this, "play");
     }
 
 }

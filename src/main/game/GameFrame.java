@@ -3,6 +3,7 @@ package main.game;
 import main.gameOver.GameOverFrame;
 
 import javax.swing.*;
+import java.awt.image.BufferedImage;
 
 public class GameFrame extends JFrame {
 
@@ -11,10 +12,10 @@ public class GameFrame extends JFrame {
     private GameLoop gameLoop;
     private GameOverFrame gameOverFrame;
 
-    public GameFrame(){
+    public GameFrame(BufferedImage mapImg){
         this.setTitle("Pac-man");
 
-        this.gamePanel = new GamePanel();
+        this.gamePanel = new GamePanel(mapImg);
         this.gameLoop = new GameLoop(gamePanel, this);
         this.gameThread = new Thread(gameLoop);
 
@@ -37,7 +38,7 @@ public class GameFrame extends JFrame {
         this.gameOverFrame.view(score, ending);
     }
 
-    public static void view(){
-        new GameFrame().setVisible(true);
+    public static void view(BufferedImage mapImg){
+        new GameFrame(mapImg).setVisible(true);
     }
 }

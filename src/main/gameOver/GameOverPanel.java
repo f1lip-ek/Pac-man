@@ -91,7 +91,7 @@ public class GameOverPanel extends JPanel {
 
         this.playAgainButton.addActionListener(_ -> {
             this.gameOverFrame.dispose();
-            GameFrame.view();
+            StartFrame.playAgain();
         });
         this.goMainMenuButton.addActionListener(_ -> {
             this.gameOverFrame.dispose();

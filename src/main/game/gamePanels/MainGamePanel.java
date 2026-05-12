@@ -8,6 +8,7 @@ import main.game.levels.Level;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class MainGamePanel extends JPanel {
 
@@ -19,12 +20,12 @@ public class MainGamePanel extends JPanel {
     private MyKeyListener keyListener;
     private Level level;
 
-    public MainGamePanel(){
+    public MainGamePanel(BufferedImage mapImg){
         this.player = new Player();
         this.ghosts = new Ghost[4];
         setGhosts();
         this.keyListener = new MyKeyListener(player);
-        this.level = new Level(player, ghosts);
+        this.level = new Level(player, ghosts, mapImg);
 
         player.setLevel(level);
         for (int i = 0; i < ghosts.length; i++) {

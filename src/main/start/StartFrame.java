@@ -21,4 +21,13 @@ public class StartFrame extends JFrame {
         StartFrame f = new StartFrame();
         f.setVisible(true);
     }
+
+    public static void playAgain(){
+        StartFrame f = new StartFrame();
+        f.getStartGamePanel().playAgain();
+    }
+
+    public StartGamePanel getStartGamePanel(){
+        return startGamePanel;
+    }
 }

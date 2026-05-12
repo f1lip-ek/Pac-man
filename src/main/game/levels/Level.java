@@ -7,6 +7,7 @@ import main.game.entities.Player;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class Level {
 
@@ -24,8 +25,8 @@ public class Level {
 
     private BufferedImage[] textures;
 
-    public Level(Player player, Ghost[] ghosts){
-        this.image = StaticMethods.getImage("/maps/map_01.png");
+    public Level(Player player, Ghost[] ghosts, BufferedImage mapImg){
+        this.image = mapImg;
         this.width = image.getWidth();
         this.height = image.getHeight();
         this.imgArray = new int[height][width];
@@ -129,6 +130,26 @@ public class Level {
             }
         }
         return true;
+    }
+
+    public static String[] getImages(){
+        boolean canGo = true;
+        int count = 1;
+        while(canGo){
+            try{
+                StaticMethods.getImage("/maps/map_0" + count + ".png");
+                count++;
+            }catch (IllegalArgumentException e){
+                canGo = false;
+            }
+        }
+        count--;
+        System.out.println("Maps count: " + count);
+        String[] imgs = new String[count];
+        for (int i = 1; i <= count; i++) {
+            imgs[i-1] = "map_0" + i + ".png";
+        }
+        return imgs;
     }
 
     @Override

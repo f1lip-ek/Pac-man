@@ -6,6 +6,7 @@ import main.game.gamePanels.PointPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class GamePanel extends JPanel {
 
@@ -18,9 +19,9 @@ public class GamePanel extends JPanel {
     private PointPanel pointPanel;
 
 
-    public GamePanel(){
+    public GamePanel(BufferedImage mapImg){
         this.removeAll();
-        this.mainGamePanel = new MainGamePanel();
+        this.mainGamePanel = new MainGamePanel(mapImg);
         this.healthPanel = new HealthPanel(mainGamePanel.getPlayer());
         this.pointPanel = new PointPanel(mainGamePanel.getPlayer().getScore());
         this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT + RECT_SIZE));
