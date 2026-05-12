@@ -18,8 +18,10 @@ public class MapChoose extends JPanel {
     private JButton exitButton;
 
     private StartFrame startFrame;
+    private StartGamePanel startPanel;
 
-    public MapChoose(StartFrame startFrame){
+    public MapChoose(StartFrame startFrame, StartGamePanel startPanel){
+        this.startPanel = startPanel;
         this.startFrame = startFrame;
         this.maps = Level.getImages();
         setMapChooser();
@@ -27,9 +29,10 @@ public class MapChoose extends JPanel {
         this.exitButton = new JButton("Exit");
 
         setButtons();
-        this.setLayout(new GridLayout(2, 1));
+        this.setLayout(new GridLayout(3, 1));
         this.add(mapChooser);
         this.add(playButton);
+        this.add(exitButton);
 
     }
 
@@ -48,7 +51,7 @@ public class MapChoose extends JPanel {
             GameFrame.view(mapImg);
         });
         this.exitButton.addActionListener(e -> {
-
+            startPanel.getCardLayout().show(startPanel, "mainPanel");
         });
     }
 

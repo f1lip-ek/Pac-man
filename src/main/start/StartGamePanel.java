@@ -24,7 +24,7 @@ public class StartGamePanel extends JPanel {
     public StartGamePanel(StartFrame startFrame){
         this.startFrame = startFrame;
         this.mainPanel = new JPanel();
-        this.mapChoose = new MapChoose(startFrame);
+        this.mapChoose = new MapChoose(startFrame, this);
 
         this.cardLayout = new CardLayout();
         this.setLayout(cardLayout);
@@ -76,6 +76,10 @@ public class StartGamePanel extends JPanel {
         panel.add(exitButton);
         this.mainPanel.add(panel);
 
+    }
+
+    public CardLayout getCardLayout() {
+        return cardLayout;
     }
 
     public void playAgain(){
