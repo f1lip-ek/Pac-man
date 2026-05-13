@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class StartFrame extends JFrame {
 
-    private StartGamePanel startGamePanel;
+    private static StartGamePanel startGamePanel;
 
     public StartFrame(){
         this.startGamePanel = new StartGamePanel(this);
@@ -23,8 +23,7 @@ public class StartFrame extends JFrame {
     }
 
     public static void playAgain(){
-        StartFrame f = new StartFrame();
-        f.getStartGamePanel().playAgain();
+        startGamePanel.playAgain();
     }
 
     public StartGamePanel getStartGamePanel(){

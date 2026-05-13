@@ -84,6 +84,8 @@ public class StartGamePanel extends JPanel {
 
     public void playAgain(){
         this.startFrame.setVisible(true);
+        this.mapChoose.getMapChooser().setSelectedIndex(mapChoose.getMapChoosenIndex());
+        this.mapChoose.getViewMap().repaint();
         this.cardLayout.show(this, "play");
     }
 

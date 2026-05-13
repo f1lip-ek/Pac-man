@@ -13,6 +13,7 @@ public class MapChoose extends JPanel {
     private String[] maps;
     private BufferedImage mapImg;
     private BufferedImage mapChoosen;
+    private int mapChoosenIndex;
 
     private JComboBox<String> mapChooser;
     private JButton playButton;
@@ -69,6 +70,7 @@ public class MapChoose extends JPanel {
         this.playButton.addActionListener(e -> {
             if (mapChooser.getSelectedIndex() != 0){
                 mapImg = StaticMethods.getImage("/maps/" + mapChooser.getSelectedItem());
+                mapChoosenIndex = mapChooser.getSelectedIndex();
                 startFrame.dispose();
                 GameFrame.view(mapImg);
             }
@@ -90,5 +92,17 @@ public class MapChoose extends JPanel {
 
     public BufferedImage getMapImg() {
         return mapImg;
+    }
+
+    public JComboBox<String> getMapChooser() {
+        return mapChooser;
+    }
+
+    public int getMapChoosenIndex() {
+        return mapChoosenIndex;
+    }
+
+    public JPanel getViewMap() {
+        return viewMap;
     }
 }
