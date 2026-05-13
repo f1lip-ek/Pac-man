@@ -34,6 +34,7 @@ public class MapChoose extends JPanel {
         setViewMap();
         setButtons();
         this.setLayout(null);
+        this.setBackground(Color.BLACK);
         this.add(mapChooser);
         this.add(viewMap);
         addButtonsToPanel();
@@ -48,6 +49,7 @@ public class MapChoose extends JPanel {
             }
         };
         this.viewMap.setBounds(0, 31, 800, 469);
+        this.viewMap.setBackground(Color.BLACK);
     }
 
     public void setMapChooser(){
