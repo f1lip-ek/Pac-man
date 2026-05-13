@@ -16,6 +16,9 @@ public class GameLoop implements Runnable{
     @Override
     public void run() {
 
+        panel.getMainGamePanel().getPlayer().setFirstMovement();
+        setGhostsFirstMovement();
+
         panel.repaint();
 
         try{
@@ -109,6 +112,12 @@ public class GameLoop implements Runnable{
                     break;
                 }
             }
+        }
+    }
+    
+    public void setGhostsFirstMovement(){
+        for (int i = 0; i < panel.getMainGamePanel().getGhosts().length; i++) {
+            panel.getMainGamePanel().getGhosts()[i].setLastMovement();
         }
     }
 }
