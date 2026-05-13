@@ -22,7 +22,7 @@ public class GameFrame extends JFrame {
         this.gameOverFrame = new GameOverFrame();
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+
         this.add(gamePanel);
 
         this.gameThread.start();

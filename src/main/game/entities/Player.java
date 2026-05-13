@@ -15,7 +15,6 @@ public class Player{
     private BufferedImage[] img = new BufferedImage[4];
 
     private int lives = 3;
-    private final int SIZE = 30;
 
     private float speed = 1f;
     private float x = 0;
@@ -135,10 +134,6 @@ public class Player{
         this.nextMovement = nextMovement;
     }
 
-    public float getSpeed(){
-        return speed;
-    }
-
     public float getX(){
         return x;
     }
@@ -147,9 +142,6 @@ public class Player{
         return y;
     }
 
-    public int getSIZE(){
-        return SIZE;
-    }
 
     public void setX(float num) {
         if ((x + num) > 0 && (x + num) < StaticThings.PANEL_WIDTH - hitbox.width) {
@@ -157,19 +149,10 @@ public class Player{
         }
     }
 
-    public void setDefaultPositionX(float num){
-        this.x = num;
-        updateHitBox();
-    }
-
     public void setY(float num) {
         if ((y + num) < StaticThings.PANEL_HEIGHT - hitbox.height && (y + num) > 0) {
             this.y += num;
         }
-    }
-    public void setDefaultPositionY(float num){
-        this.y = num;
-        updateHitBox();
     }
 
     public void setDefaultPosition(float x, float y){

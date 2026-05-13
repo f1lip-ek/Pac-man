@@ -1,6 +1,5 @@
 package main.game.levels;
 
-import main.game.GamePanel;
 import main.game.StaticThings;
 
 public class CollisionMap {

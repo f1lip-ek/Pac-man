@@ -92,10 +92,6 @@ public class MapChoose extends JPanel {
         this.add(panel);
     }
 
-    public BufferedImage getMapImg() {
-        return mapImg;
-    }
-
     public JComboBox<String> getMapChooser() {
         return mapChooser;
     }

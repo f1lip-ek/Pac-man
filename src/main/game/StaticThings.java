@@ -1,7 +1,6 @@
 package main.game;
 
 import main.game.entities.Movement;
-import main.game.entities.Player;
 import main.game.levels.Level;
 
 import javax.imageio.ImageIO;

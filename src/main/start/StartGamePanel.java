@@ -1,7 +1,5 @@
 package main.start;
 
-import main.game.GameFrame;
-import main.game.GamePanel;
 import main.game.StaticThings;
 
 import javax.swing.*;

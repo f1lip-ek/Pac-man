@@ -1,6 +1,5 @@
 package main.game.entities;
 
-import main.game.GamePanel;
 import main.game.StaticThings;
 import main.game.levels.Level;
 
@@ -12,8 +11,6 @@ import java.util.Random;
 public class Ghost {
 
     private Movement lastMovement = Movement.NONE;
-
-    private final int SIZE = 30;
 
     private float speed = 1f;
     private float x = 0;
@@ -81,19 +78,6 @@ public class Ghost {
         if ((y + num) < StaticThings.PANEL_HEIGHT - hitbox.height && (y + num) > 0) {
             this.y += num;
         }
-    }
-
-    public float getDefaultX() {
-        return defaultX;
-    }
-
-    public float getDefaultY() {
-        return defaultY;
-    }
-
-    public void setXY(){
-        this.x = this.defaultX;
-        this.y = this.defaultY;
     }
 
     public void setDefaultPosition(float x, float y){

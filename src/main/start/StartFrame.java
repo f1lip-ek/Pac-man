@@ -7,7 +7,7 @@ public class StartFrame extends JFrame {
     private static StartGamePanel startGamePanel;
 
     public StartFrame(){
-        this.startGamePanel = new StartGamePanel(this);
+        startGamePanel = new StartGamePanel(this);
         this.add(startGamePanel);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -24,9 +24,5 @@ public class StartFrame extends JFrame {
 
     public static void playAgain(){
         startGamePanel.playAgain();
-    }
-
-    public StartGamePanel getStartGamePanel(){
-        return startGamePanel;
     }
 }
