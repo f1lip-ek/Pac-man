@@ -11,8 +11,7 @@ import java.util.Random;
 
 public class Ghost {
 
-    private Movement lastMovement = Movement.DOWN;
-    private Movement nextMovement = Movement.DOWN;
+    private Movement lastMovement = Movement.NONE;
 
     private final int SIZE = 30;
 
@@ -138,7 +137,7 @@ public class Ghost {
     }
 
     public void setLastMovement(){
-        ArrayList<Movement> list = getPossibleMovements();
+        ArrayList<Movement> list = StaticThings.getMovements(level, hitbox, speed, lastMovement);
 
 
         int random = rd.nextInt(list.size());
@@ -169,35 +168,6 @@ public class Ghost {
     public void updateHitBox(){
         hitbox.x = (int)x;
         hitbox.y = (int)y;
-    }
-
-    public ArrayList<Movement> getPossibleMovements(){
-        ArrayList<Movement> list = new ArrayList<>();
-
-        if (!level.isWall(hitbox.x, (int) (hitbox.y - speed)) &&
-                !level.isWall(hitbox.x + hitbox.width - 1, (int) (hitbox.y - speed))){
-            list.add(Movement.UP);
-        }
-        if (!level.isWall(hitbox.x, (int) (hitbox.y + hitbox.height - 1 + speed)) &&
-                !level.isWall(hitbox.x + hitbox.width - 1, (int) (hitbox.y + hitbox.height - 1 + speed))) {
-            list.add(Movement.DOWN);
-        }
-        if (!level.isWall((int) (hitbox.x - speed), hitbox.y) &&
-                !level.isWall((int) (hitbox.x - speed), hitbox.y + hitbox.height - 1)){
-            list.add(Movement.LEFT);
-        }
-        if (!level.isWall((int) (hitbox.x + hitbox.width - 1 + speed), hitbox.y) &&
-                !level.isWall((int) (hitbox.x + hitbox.width - 1 + speed), hitbox.y + hitbox.height - 1)){
-            list.add(Movement.RIGHT);
-        }
-
-        switch (lastMovement) {
-            case Movement.UP -> list.remove(Movement.UP);
-            case Movement.DOWN -> list.remove(Movement.DOWN);
-            case Movement.LEFT -> list.remove(Movement.LEFT);
-            case Movement.RIGHT -> list.remove(Movement.RIGHT);
-        }
-        return list;
     }
 
 }
