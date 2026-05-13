@@ -1,7 +1,7 @@
 package main.game.gamePanels;
 
 import main.game.GamePanel;
-import main.game.StaticMethods;
+import main.game.StaticThings;
 import main.game.entities.Player;
 
 import javax.swing.*;
@@ -16,7 +16,7 @@ public class HealthPanel extends JPanel {
     public HealthPanel(Player p){
         this.health = p.getLives();
 
-        this.image = StaticMethods.getImage("/entities/pacman/pacman_right.png");
+        this.image = StaticThings.getImage("/entities/pacman/pacman_right.png");
 
         this.setPreferredSize(new Dimension(GamePanel.RECT_SIZE*3, GamePanel.RECT_SIZE));
 

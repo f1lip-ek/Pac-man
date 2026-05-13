@@ -1,7 +1,7 @@
 package main.game.entities;
 
 import main.game.GamePanel;
-import main.game.StaticMethods;
+import main.game.StaticThings;
 import main.game.levels.Level;
 
 import java.awt.*;
@@ -49,9 +49,9 @@ public class Ghost {
     private void setImgs(){
         String[] arr = {"up", "down", "left", "right"};
         for (int i = 0; i < arr.length; i++) {
-            img[i] = StaticMethods.getImage("/entities/" + name + "/" + name + "_" + arr[i] + ".png");
+            img[i] = StaticThings.getImage("/entities/" + name + "/" + name + "_" + arr[i] + ".png");
         }
-        img[4] = StaticMethods.getImage("/entities/vulnerable/vulnerable.png");
+        img[4] = StaticThings.getImage("/entities/vulnerable/vulnerable.png");
     }
 
     public void setDefaultXY() {

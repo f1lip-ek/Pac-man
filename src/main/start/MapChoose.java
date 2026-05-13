@@ -1,7 +1,7 @@
 package main.start;
 
 import main.game.GameFrame;
-import main.game.StaticMethods;
+import main.game.StaticThings;
 import main.game.levels.Level;
 
 import javax.swing.*;
@@ -62,7 +62,7 @@ public class MapChoose extends JPanel {
         this.mapChooser.setBounds(300, 0, 200, 30);
         this.mapChooser.addActionListener(e -> {
             if (mapChooser.getSelectedIndex() != 0){
-                mapChoosen = StaticMethods.getImage("/maps/" + mapChooser.getSelectedItem());
+                mapChoosen = StaticThings.getImage("/maps/" + mapChooser.getSelectedItem());
             }
             viewMap.repaint();
         });
@@ -71,7 +71,7 @@ public class MapChoose extends JPanel {
     private void setButtons(){
         this.playButton.addActionListener(e -> {
             if (mapChooser.getSelectedIndex() != 0){
-                mapImg = StaticMethods.getImage("/maps/" + mapChooser.getSelectedItem());
+                mapImg = StaticThings.getImage("/maps/" + mapChooser.getSelectedItem());
                 mapChoosenIndex = mapChooser.getSelectedIndex();
                 startFrame.dispose();
                 GameFrame.view(mapImg);

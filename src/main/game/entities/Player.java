@@ -1,6 +1,6 @@
 package main.game.entities;
 import main.game.GamePanel;
-import main.game.StaticMethods;
+import main.game.StaticThings;
 import main.game.levels.Level;
 
 import java.awt.*;
@@ -39,7 +39,7 @@ public class Player{
     private void setImgs(){
         String[] arr = {"up", "down", "left", "right"};
         for (int i = 0; i < img.length; i++) {
-            img[i] = StaticMethods.getImage("/entities/pacman/pacman_" + arr[i] + ".png");
+            img[i] = StaticThings.getImage("/entities/pacman/pacman_" + arr[i] + ".png");
         }
     }
 

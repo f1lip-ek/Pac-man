@@ -1,7 +1,7 @@
 package main.game.levels;
 
 import main.game.GamePanel;
-import main.game.StaticMethods;
+import main.game.StaticThings;
 import main.game.entities.Ghost;
 import main.game.entities.Player;
 
@@ -37,9 +37,9 @@ public class Level {
     }
 
     public void setTextures(){
-        this.textures[0] = StaticMethods.getImage("/textures/way.png");
-        this.textures[1] = StaticMethods.getImage("/textures/smallPoint_way.png");
-        this.textures[2] = StaticMethods.getImage("/textures/bigPoint_way.png");
+        this.textures[0] = StaticThings.getImage("/textures/way.png");
+        this.textures[1] = StaticThings.getImage("/textures/smallPoint_way.png");
+        this.textures[2] = StaticThings.getImage("/textures/bigPoint_way.png");
     }
 
     public void setWhereWasPlayer(){
@@ -136,7 +136,7 @@ public class Level {
         int count = 1;
         while(canGo){
             try{
-                StaticMethods.getImage("/maps/map_0" + count + ".png");
+                StaticThings.getImage("/maps/map_0" + count + ".png");
                 count++;
             }catch (IllegalArgumentException e){
                 canGo = false;
