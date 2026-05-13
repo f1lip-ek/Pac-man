@@ -1,6 +1,5 @@
 package main.game.levels;
 
-import main.game.GamePanel;
 import main.game.StaticThings;
 import main.game.entities.Ghost;
 import main.game.entities.Player;
@@ -43,8 +42,8 @@ public class Level {
     }
 
     public void setWhereWasPlayer(){
-        int x = (int) (player.getX()/GamePanel.RECT_SIZE);
-        int y = (int) (player.getY()/GamePanel.RECT_SIZE);
+        int x = (int) (player.getX()/StaticThings.RECT_SIZE);
+        int y = (int) (player.getY()/StaticThings.RECT_SIZE);
 
         if (!whereWasPlayer[y][x]){
             whereWasPlayer[y][x] = true;
@@ -69,10 +68,10 @@ public class Level {
                     imgArray[i][j] = 0;
                 } else if (image.getRGB(j, i) == new Color(255, 244, 0).getRGB()) {
                     imgArray[i][j] = 2;
-                    player.setDefaultPosition(j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE);
+                    player.setDefaultPosition(j * StaticThings.RECT_SIZE, i * StaticThings.RECT_SIZE);
                 } else if (image.getRGB(j, i) == new Color(255, 0, 0).getRGB()) {
                     imgArray[i][j] = 3;
-                    ghosts[ghostIndex].setDefaultPosition(j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE);
+                    ghosts[ghostIndex].setDefaultPosition(j * StaticThings.RECT_SIZE, i * StaticThings.RECT_SIZE);
                     ghostIndex++;
                 }
             }
@@ -85,17 +84,17 @@ public class Level {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 switch (imgArray[i][j]){
-                    case 1 -> g.fillRect(j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, GamePanel.RECT_SIZE, GamePanel.RECT_SIZE);
+                    case 1 -> g.fillRect(j * StaticThings.RECT_SIZE, i * StaticThings.RECT_SIZE, StaticThings.RECT_SIZE, StaticThings.RECT_SIZE);
                     case 0, 2, 3 -> {
 //                        g.setColor(new Color(0, 0, 0));
-//                        g.fillRect(j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, GamePanel.RECT_SIZE, GamePanel.RECT_SIZE);
+//                        g.fillRect(j * StaticThings.RECT_SIZE, i * StaticThings.RECT_SIZE, StaticThings.RECT_SIZE, StaticThings.RECT_SIZE);
 //                        g.setColor(new Color(0, 0, 255));
 
-                        g.drawImage(textures[0], j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, null);
+                        g.drawImage(textures[0], j * StaticThings.RECT_SIZE, i * StaticThings.RECT_SIZE, null);
                         if (!whereWasPlayer[i][j]) {
-                            g.drawImage(textures[1], j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, null);
+                            g.drawImage(textures[1], j * StaticThings.RECT_SIZE, i * StaticThings.RECT_SIZE, null);
                             if (getBigPoint(j, i)) {
-                                g.drawImage(textures[2], j * GamePanel.RECT_SIZE, i * GamePanel.RECT_SIZE, null);
+                                g.drawImage(textures[2], j * StaticThings.RECT_SIZE, i * StaticThings.RECT_SIZE, null);
                             }
                         }
                     }
@@ -109,7 +108,7 @@ public class Level {
                 || (imgArray[y][x+1] == 1 && imgArray[y-1][x] == 1 && imgArray[y][x-1] != 1 && imgArray[y+1][x] != 1)  //right up
                 || (imgArray[y][x+1] == 1 && imgArray[y+1][x] == 1 && imgArray[y][x-1] != 1 && imgArray[y-1][x] != 1) //right down
                 || (imgArray[y-1][x] != 1 && imgArray[y][x+1] != 1 && imgArray[y+1][x] == 1 && imgArray[y][x-1] == 1)) { //right down
-            if (player.getDefaultX() != x * GamePanel.RECT_SIZE && player.getDefaultY() != y * GamePanel.RECT_SIZE){
+            if (player.getDefaultX() != x * StaticThings.RECT_SIZE && player.getDefaultY() != y * StaticThings.RECT_SIZE){
                 return true;
             }
         }

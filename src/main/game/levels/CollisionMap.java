@@ -1,6 +1,7 @@
 package main.game.levels;
 
 import main.game.GamePanel;
+import main.game.StaticThings;
 
 public class CollisionMap {
 
@@ -23,11 +24,11 @@ public class CollisionMap {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 if (map[i][j] == 1){
-                    collisionMap[i][j] = new Block(j* GamePanel.RECT_SIZE, (j*GamePanel.RECT_SIZE) + GamePanel.RECT_SIZE,
-                            i*GamePanel.RECT_SIZE, (i*GamePanel.RECT_SIZE) + GamePanel.RECT_SIZE, true);
+                    collisionMap[i][j] = new Block(j* StaticThings.RECT_SIZE, (j*StaticThings.RECT_SIZE) + StaticThings.RECT_SIZE,
+                            i*StaticThings.RECT_SIZE, (i*StaticThings.RECT_SIZE) + StaticThings.RECT_SIZE, true);
                 }else if (map[i][j] == 0 || map[i][j] == 2 || map[i][j] == 3){
-                    collisionMap[i][j] = new Block(j* GamePanel.RECT_SIZE, (j*GamePanel.RECT_SIZE) + GamePanel.RECT_SIZE,
-                            i*GamePanel.RECT_SIZE, (i*GamePanel.RECT_SIZE) + GamePanel.RECT_SIZE, false);
+                    collisionMap[i][j] = new Block(j* StaticThings.RECT_SIZE, (j*StaticThings.RECT_SIZE) + StaticThings.RECT_SIZE,
+                            i*StaticThings.RECT_SIZE, (i*StaticThings.RECT_SIZE) + StaticThings.RECT_SIZE, false);
                 }else{
                     System.err.println("Invalid map value: " + map[i][j]);
                 }
@@ -36,7 +37,7 @@ public class CollisionMap {
     }
 
     public Block getBlock(int x, int y){
-        return collisionMap[y/GamePanel.RECT_SIZE][x/GamePanel.RECT_SIZE];
+        return collisionMap[y/StaticThings.RECT_SIZE][x/StaticThings.RECT_SIZE];
     }
 
     @Override

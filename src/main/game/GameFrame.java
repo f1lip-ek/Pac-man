@@ -23,7 +23,7 @@ public class GameFrame extends JFrame {
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        this.setSize(GamePanel.PANEL_WIDTH, GamePanel.PANEL_HEIGHT + GamePanel.RECT_SIZE);
+        this.setSize(StaticThings.PANEL_WIDTH, StaticThings.PANEL_HEIGHT + StaticThings.RECT_SIZE);
         this.add(gamePanel);
 
         this.gameThread.start();

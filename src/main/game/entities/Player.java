@@ -1,5 +1,5 @@
 package main.game.entities;
-import main.game.GamePanel;
+
 import main.game.StaticThings;
 import main.game.levels.Level;
 
@@ -152,7 +152,7 @@ public class Player{
     }
 
     public void setX(float num) {
-        if ((x + num) > 0 && (x + num) < GamePanel.PANEL_WIDTH - hitbox.width) {
+        if ((x + num) > 0 && (x + num) < StaticThings.PANEL_WIDTH - hitbox.width) {
             this.x += num;
         }
     }
@@ -163,7 +163,7 @@ public class Player{
     }
 
     public void setY(float num) {
-        if ((y + num) < GamePanel.PANEL_HEIGHT - hitbox.height && (y + num) > 0) {
+        if ((y + num) < StaticThings.PANEL_HEIGHT - hitbox.height && (y + num) > 0) {
             this.y += num;
         }
     }
@@ -231,7 +231,7 @@ public class Player{
     }
 
     public void setHitbox(){
-        hitbox = new Rectangle((int)x, (int)y, GamePanel.RECT_SIZE, GamePanel.RECT_SIZE);
+        hitbox = new Rectangle((int)x, (int)y, StaticThings.RECT_SIZE, StaticThings.RECT_SIZE);
     }
     public void updateHitBox(){
         hitbox.x = (int)x;

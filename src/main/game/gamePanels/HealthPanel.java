@@ -1,6 +1,5 @@
 package main.game.gamePanels;
 
-import main.game.GamePanel;
 import main.game.StaticThings;
 import main.game.entities.Player;
 
@@ -18,7 +17,7 @@ public class HealthPanel extends JPanel {
 
         this.image = StaticThings.getImage("/entities/pacman/pacman_right.png");
 
-        this.setPreferredSize(new Dimension(GamePanel.RECT_SIZE*3, GamePanel.RECT_SIZE));
+        this.setPreferredSize(new Dimension(StaticThings.RECT_SIZE*3, StaticThings.RECT_SIZE));
 
         this.setBackground(Color.BLACK);
 
@@ -30,7 +29,7 @@ public class HealthPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         for (int i = 0; i < health; i++) {
-            g.drawImage(image, 10 + i*(GamePanel.RECT_SIZE + 10), 0, 40, 40, null);
+            g.drawImage(image, 10 + i*(StaticThings.RECT_SIZE + 10), 0, 40, 40, null);
         }
     }
 

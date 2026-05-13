@@ -10,10 +10,6 @@ import java.awt.image.BufferedImage;
 
 public class GamePanel extends JPanel {
 
-    public static final int PANEL_HEIGHT = 600;
-    public static final int PANEL_WIDTH = 800;
-    public static final int RECT_SIZE = 40;
-
     private MainGamePanel mainGamePanel;
     private HealthPanel healthPanel;
     private PointPanel pointPanel;
@@ -24,7 +20,7 @@ public class GamePanel extends JPanel {
         this.mainGamePanel = new MainGamePanel(mapImg);
         this.healthPanel = new HealthPanel(mainGamePanel.getPlayer());
         this.pointPanel = new PointPanel(mainGamePanel.getPlayer().getScore());
-        this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT + RECT_SIZE));
+        this.setPreferredSize(new Dimension(StaticThings.PANEL_WIDTH, StaticThings.PANEL_HEIGHT + StaticThings.RECT_SIZE));
         this.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 
         this.add(mainGamePanel);
@@ -34,7 +30,7 @@ public class GamePanel extends JPanel {
     public void panel(){
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(1, 2));
-        panel.setPreferredSize(new Dimension(PANEL_WIDTH, RECT_SIZE));
+        panel.setPreferredSize(new Dimension(StaticThings.PANEL_WIDTH, StaticThings.RECT_SIZE));
         panel.add(healthPanel);
         panel.add(pointPanel);
 

@@ -2,6 +2,7 @@ package main.start;
 
 import main.game.GameFrame;
 import main.game.GamePanel;
+import main.game.StaticThings;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,8 +36,8 @@ public class StartGamePanel extends JPanel {
         this.optionsButton = new JButton("Settings");
         this.exitButton = new JButton("Exit");
 
-        this.mainPanel.setPreferredSize(new Dimension(GamePanel.PANEL_WIDTH, GamePanel.PANEL_HEIGHT));
-        this.setPreferredSize(new Dimension(GamePanel.PANEL_WIDTH, GamePanel.PANEL_HEIGHT));
+        this.mainPanel.setPreferredSize(new Dimension(StaticThings.PANEL_WIDTH, StaticThings.PANEL_HEIGHT));
+        this.setPreferredSize(new Dimension(StaticThings.PANEL_WIDTH, StaticThings.PANEL_HEIGHT));
         this.mainPanel.setBackground(Color.BLACK);
         setLabel();
         setButtons();
@@ -47,7 +48,7 @@ public class StartGamePanel extends JPanel {
     }
 
     public void setLabel(){
-        this.label.setPreferredSize(new Dimension(GamePanel.PANEL_WIDTH, (GamePanel.PANEL_HEIGHT/5)*4));
+        this.label.setPreferredSize(new Dimension(StaticThings.PANEL_WIDTH, (StaticThings.PANEL_HEIGHT/5)*4));
         this.label.setFont(new Font("Arial", Font.BOLD, 50));
         this.label.setForeground(Color.WHITE);
         this.mainPanel.add(label);
@@ -56,7 +57,7 @@ public class StartGamePanel extends JPanel {
     public void setButtons() {
 
         JPanel panel = new JPanel();
-        panel.setPreferredSize(new Dimension(GamePanel.PANEL_WIDTH, GamePanel.PANEL_HEIGHT/5));
+        panel.setPreferredSize(new Dimension(StaticThings.PANEL_WIDTH, StaticThings.PANEL_HEIGHT/5));
         panel.setLayout(new GridLayout(1, 3, 50, 0));
         panel.setBackground(Color.BLACK);
 

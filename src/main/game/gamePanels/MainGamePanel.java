@@ -1,7 +1,7 @@
 package main.game.gamePanels;
 
-import main.game.GamePanel;
 import main.game.MyKeyListener;
+import main.game.StaticThings;
 import main.game.entities.Ghost;
 import main.game.entities.Player;
 import main.game.levels.Level;
@@ -34,7 +34,7 @@ public class MainGamePanel extends JPanel {
 
         this.setFocusable(true);
 
-        this.setPreferredSize(new Dimension(GamePanel.PANEL_WIDTH, GamePanel.PANEL_HEIGHT));
+        this.setPreferredSize(new Dimension(StaticThings.PANEL_WIDTH, StaticThings.PANEL_HEIGHT));
         this.addKeyListener(keyListener);
 
         this.setOpaque(true);

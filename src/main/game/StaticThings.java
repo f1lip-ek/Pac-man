@@ -13,6 +13,10 @@ import java.util.ArrayList;
 
 public class StaticThings {
 
+    public static final int PANEL_HEIGHT = 600;
+    public static final int PANEL_WIDTH = 800;
+    public static final int RECT_SIZE = 40;
+
     public static BufferedImage getImage(String path){
         BufferedImage img = null;
         try(InputStream is = StaticThings.class.getResourceAsStream(path)){

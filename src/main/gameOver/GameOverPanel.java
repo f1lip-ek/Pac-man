@@ -2,6 +2,7 @@ package main.gameOver;
 
 import main.game.GameFrame;
 import main.game.GamePanel;
+import main.game.StaticThings;
 import main.start.StartFrame;
 
 import javax.swing.*;
@@ -34,7 +35,7 @@ public class GameOverPanel extends JPanel {
         this.exitButton = new JButton("Exit");
         this.goMainMenuButton = new JButton("Go to Main Menu");
 
-        this.setPreferredSize(new Dimension(GamePanel.PANEL_WIDTH, GamePanel.PANEL_HEIGHT));
+        this.setPreferredSize(new Dimension(StaticThings.PANEL_WIDTH, StaticThings.PANEL_HEIGHT));
         this.setBackground(Color.BLACK);
         this.setLabels();
         this.setButtons();
@@ -52,7 +53,7 @@ public class GameOverPanel extends JPanel {
 
     public void setLabels(){
         JPanel panel = new JPanel();
-        panel.setPreferredSize(new Dimension(GamePanel.PANEL_WIDTH, (GamePanel.PANEL_HEIGHT/5)*4));
+        panel.setPreferredSize(new Dimension(StaticThings.PANEL_WIDTH, (StaticThings.PANEL_HEIGHT/5)*4));
         panel.setLayout(new GridLayout(2, 1));
         panel.setBackground(Color.BLACK);
 
@@ -85,7 +86,7 @@ public class GameOverPanel extends JPanel {
 
     public void setButtons(){
         JPanel panel = new JPanel();
-        panel.setPreferredSize(new Dimension(GamePanel.PANEL_WIDTH, GamePanel.PANEL_HEIGHT/5));
+        panel.setPreferredSize(new Dimension(StaticThings.PANEL_WIDTH, StaticThings.PANEL_HEIGHT/5));
         panel.setLayout(new GridLayout(1, 3, 50, 0));
         panel.setBackground(Color.BLACK);
 

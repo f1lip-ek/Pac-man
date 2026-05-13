@@ -72,13 +72,13 @@ public class Ghost {
     }
 
     public void setX(float num) {
-        if ((x + num) > 0 && (x + num) < GamePanel.PANEL_WIDTH - hitbox.width) {
+        if ((x + num) > 0 && (x + num) < StaticThings.PANEL_WIDTH - hitbox.width) {
             this.x += num;
         }
     }
 
     public void setY(float num) {
-        if ((y + num) < GamePanel.PANEL_HEIGHT - hitbox.height && (y + num) > 0) {
+        if ((y + num) < StaticThings.PANEL_HEIGHT - hitbox.height && (y + num) > 0) {
             this.y += num;
         }
     }
@@ -163,7 +163,7 @@ public class Ghost {
     }
 
     public void setHitbox(){
-        hitbox = new Rectangle((int)this.x, (int)this.y, GamePanel.RECT_SIZE, GamePanel.RECT_SIZE);
+        hitbox = new Rectangle((int)this.x, (int)this.y, StaticThings.RECT_SIZE, StaticThings.RECT_SIZE);
     }
     public void updateHitBox(){
         hitbox.x = (int)x;
