@@ -8,8 +8,8 @@ import java.awt.image.BufferedImage;
 
 public class Player{
 
-    private Movement lastMovement = Movement.UP;
-    private Movement nextMovement = Movement.UP;
+    private Movement lastMovement = Movement.NONE;
+    private Movement nextMovement = Movement.NONE;
     private boolean dead = false;
 
     private BufferedImage[] img = new BufferedImage[4];
@@ -125,6 +125,10 @@ public class Player{
                 }
             }
         }
+    }
+
+    public void setFirstMovement(){
+        lastMovement = StaticThings.getMovements(level, hitbox, speed, lastMovement).getFirst();
     }
 
     public void setNextMovement(Movement nextMovement){
