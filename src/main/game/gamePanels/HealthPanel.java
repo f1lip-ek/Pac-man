@@ -15,7 +15,7 @@ public class HealthPanel extends JPanel {
     public HealthPanel(Player p){
         this.health = p.getLives();
 
-        this.image = StaticThings.getImage("/entities/pacman/pacman_right.png");
+        this.image = StaticThings.getImage("/entities/pacman/open/pacman_open_right.png");
 
         this.setPreferredSize(new Dimension(StaticThings.RECT_SIZE*3, StaticThings.RECT_SIZE));
 

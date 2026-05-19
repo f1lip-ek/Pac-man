@@ -12,7 +12,7 @@ public class Player{
     private Movement nextMovement = Movement.NONE;
     private boolean dead = false;
 
-    private BufferedImage[] img = new BufferedImage[4];
+    private BufferedImage[][] img = new BufferedImage[4][2];
 
     private int lives = 3;
 
@@ -27,6 +27,9 @@ public class Player{
 
     private boolean isHunting = false;
 
+    private int animCounter = 0;
+    private final int ANIM_COUNTER_MAX = 15;
+
     private Rectangle hitbox;
     private Level level;
 
@@ -38,8 +41,23 @@ public class Player{
     private void setImgs(){
         String[] arr = {"up", "down", "left", "right"};
         for (int i = 0; i < img.length; i++) {
-            img[i] = StaticThings.getImage("/entities/pacman/pacman_" + arr[i] + ".png");
+            img[i][0] = StaticThings.getImage("/entities/pacman/closed/pacman_closed_" + arr[i] + ".png");
+            img[i][1] = StaticThings.getImage("/entities/pacman/open/pacman_open_" + arr[i] + ".png");
         }
+    }
+
+    public void updateAnimCounter(){
+        animCounter++;
+        if (animCounter > (ANIM_COUNTER_MAX*2)) {
+            animCounter = 0;
+        }
+    }
+
+    public boolean getChangeSprite(){
+        if (animCounter > ANIM_COUNTER_MAX){
+            return true;
+        }
+        return false;
     }
 
     public void increaseScore(){
@@ -146,12 +164,14 @@ public class Player{
     public void setX(float num) {
         if ((x + num) > 0 && (x + num) < StaticThings.PANEL_WIDTH - hitbox.width) {
             this.x += num;
+            updateAnimCounter();
         }
     }
 
     public void setY(float num) {
         if ((y + num) < StaticThings.PANEL_HEIGHT - hitbox.height && (y + num) > 0) {
             this.y += num;
+            updateAnimCounter();
         }
     }
 
@@ -206,10 +226,34 @@ public class Player{
 
     public void draw(Graphics g){
         switch (lastMovement) {
-            case Movement.UP -> g.drawImage(img[0], (int) x+5, (int) y+5, null);
-            case Movement.DOWN -> g.drawImage(img[1], (int) x+5, (int) y+5, null);
-            case Movement.LEFT -> g.drawImage(img[2], (int) x+5, (int) y+5, null);
-            case Movement.RIGHT -> g.drawImage(img[3], (int) x+5, (int) y+5, null);
+            case Movement.UP -> {
+                if (getChangeSprite()) {
+                    g.drawImage(img[0][0], (int) x + 5, (int) y + 5, null);
+                }else{
+                    g.drawImage(img[0][1], (int) x + 5, (int) y + 5, null);
+                }
+            }
+            case Movement.DOWN -> {
+                if (getChangeSprite()) {
+                    g.drawImage(img[1][0], (int) x + 5, (int) y + 5, null);
+                }else {
+                    g.drawImage(img[1][1], (int) x + 5, (int) y + 5, null);
+                }
+            }
+            case Movement.LEFT -> {
+                if (getChangeSprite()) {
+                    g.drawImage(img[2][0], (int) x + 5, (int) y + 5, null);
+                }else {
+                    g.drawImage(img[2][1], (int) x + 5, (int) y + 5, null);
+                }
+            }
+            case Movement.RIGHT -> {
+                if (getChangeSprite()) {
+                    g.drawImage(img[3][0], (int) x + 5, (int) y + 5, null);
+                }else {
+                    g.drawImage(img[3][1], (int) x + 5, (int) y + 5, null);
+                }
+            }
         }
     }
 
