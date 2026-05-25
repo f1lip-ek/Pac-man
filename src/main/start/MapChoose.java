@@ -74,11 +74,11 @@ public class MapChoose extends JPanel {
                 mapImg = StaticThings.getImage("/maps/" + mapChooser.getSelectedItem());
                 mapChoosenIndex = mapChooser.getSelectedIndex();
                 startFrame.dispose();
-                GameFrame.view(mapImg);
+                GameFrame.view(mapImg, 2);
             }
         });
         this.exitButton.addActionListener(e -> {
-            startPanel.getCardLayout().show(startPanel, "mainPanel");
+            startPanel.getCardLayout().show(startPanel, "gameType");
         });
     }
 

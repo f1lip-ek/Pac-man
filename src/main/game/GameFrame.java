@@ -1,5 +1,6 @@
 package main.game;
 
+import main.game.levels.Level;
 import main.gameOver.GameOverFrame;
 
 import javax.swing.*;
@@ -12,9 +13,14 @@ public class GameFrame extends JFrame {
     private GameLoop gameLoop;
     private GameOverFrame gameOverFrame;
 
-    public GameFrame(BufferedImage mapImg){
+    private int score = 0;
+    private int gameType;
+    private int level = 1;
+
+    public GameFrame(BufferedImage mapImg, int gameType){
         this.setTitle("Pac-man");
 
+        this.gameType = gameType;
         this.gamePanel = new GamePanel(mapImg);
         this.gameLoop = new GameLoop(gamePanel, this);
         this.gameThread = new Thread(gameLoop);
@@ -33,11 +39,27 @@ public class GameFrame extends JFrame {
     }
 
     public void viewEnd(int score, int ending){
-        this.dispose();
-        this.gameOverFrame.view(score, ending);
+        if (gameType == 1 && Level.getNumOfMaps() == level && ending == 1) {
+            this.dispose();
+            this.gameOverFrame.view(this.score, ending);
+        }
+
+        if (gameType == 2){
+            this.dispose();
+            this.gameOverFrame.view(score, ending);
+        } else if (gameType == 1 && ending == 1 && Level.getNumOfMaps() != level) {
+            this.score += score;
+            this.level++;
+            gamePanel.getMainGamePanel().setLevel(level);
+            this.gameThread = new Thread(gameLoop);
+            this.gameThread.start();
+        } else if (gameType == 1 && Level.getNumOfMaps() == level && ending == 1) {
+            this.dispose();
+            this.gameOverFrame.view(this.score, ending);
+        }
     }
 
-    public static void view(BufferedImage mapImg){
-        new GameFrame(mapImg).setVisible(true);
+    public static void view(BufferedImage mapImg, int gameType){
+        new GameFrame(mapImg, gameType).setVisible(true);
     }
 }

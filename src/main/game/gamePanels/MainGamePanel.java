@@ -28,9 +28,7 @@ public class MainGamePanel extends JPanel {
         this.level = new Level(player, ghosts, mapImg);
 
         player.setLevel(level);
-        for (int i = 0; i < ghosts.length; i++) {
-            ghosts[i].setLevel(level);
-        }
+        setGhostsLevel(level);
 
         this.setFocusable(true);
 
@@ -41,6 +39,19 @@ public class MainGamePanel extends JPanel {
 
         level.setImgArray();
         System.out.println(level);
+    }
+
+    public void setLevel(int mapIndex){
+        this.level = new Level(player, ghosts, StaticThings.getImage("/maps/map_0" + mapIndex + ".png"));
+        this.level.setImgArray();
+        player.setLevel(level);
+        setGhostsLevel(level);
+    }
+
+    public void setGhostsLevel(Level level){
+        for (int i = 0; i < ghosts.length; i++) {
+            ghosts[i].setLevel(level);
+        }
     }
 
     public Player getPlayer() {

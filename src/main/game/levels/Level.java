@@ -19,6 +19,8 @@ public class Level {
     private int width;
     private int height;
 
+    private static int numOfMaps = 1;
+
     private CollisionMap collisionMap;
 
     private BufferedImage[] textures;
@@ -132,22 +134,25 @@ public class Level {
 
     public static String[] getImages(){
         boolean canGo = true;
-        int count = 1;
         while(canGo){
             try{
-                StaticThings.getImage("/maps/map_0" + count + ".png");
-                count++;
+                StaticThings.getImage("/maps/map_0" + numOfMaps + ".png");
+                numOfMaps++;
             }catch (IllegalArgumentException e){
                 canGo = false;
             }
         }
-        count--;
-        System.out.println("Maps count: " + count);
-        String[] imgs = new String[count];
-        for (int i = 1; i <= count; i++) {
+        numOfMaps--;
+        System.out.println("Maps count: " + numOfMaps);
+        String[] imgs = new String[numOfMaps];
+        for (int i = 1; i <= numOfMaps; i++) {
             imgs[i-1] = "map_0" + i + ".png";
         }
         return imgs;
+    }
+
+    public static int getNumOfMaps() {
+        return numOfMaps;
     }
 
     @Override
