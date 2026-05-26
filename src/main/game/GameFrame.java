@@ -41,14 +41,13 @@ public class GameFrame extends JFrame {
     public void viewEnd(int score, int ending){
         if (gameType == 1 && Level.getNumOfMaps() == level && ending == 1) {
             this.dispose();
-            this.gameOverFrame.view(this.score, ending);
+            this.gameOverFrame.view(score, ending);
         }
 
         if (gameType == 2){
             this.dispose();
             this.gameOverFrame.view(score, ending);
         } else if (gameType == 1 && ending == 1 && Level.getNumOfMaps() != level) {
-            this.score += score;
             this.level++;
             gamePanel.getMainGamePanel().setLevel(level);
             this.gameThread = new Thread(gameLoop);
