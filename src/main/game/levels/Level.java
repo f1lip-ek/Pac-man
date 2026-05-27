@@ -7,11 +7,14 @@ import main.game.entities.Player;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * Class that represents a level of the game
+ */
 public class Level {
 
-    private BufferedImage image;
-    private Player player;
-    private Ghost[] ghosts;
+    private final BufferedImage image;
+    private final Player player;
+    private final Ghost[] ghosts;
 
     private int[][] imgArray;
     private boolean[][] whereWasPlayer;
@@ -23,7 +26,7 @@ public class Level {
 
     private CollisionMap collisionMap;
 
-    private BufferedImage[] textures;
+    private final BufferedImage[] textures;
 
     public Level(Player player, Ghost[] ghosts, BufferedImage mapImg){
         this.image = mapImg;
@@ -37,12 +40,18 @@ public class Level {
         setTextures();
     }
 
-    public void setTextures(){
+    /**
+     * Method that loads the textures of the level
+     */
+    private void setTextures(){
         this.textures[0] = StaticThings.getImage("/textures/way.png");
         this.textures[1] = StaticThings.getImage("/textures/smallPoint_way.png");
         this.textures[2] = StaticThings.getImage("/textures/bigPoint_way.png");
     }
 
+    /**
+     * Method that updates the whereWasPlayer array depending on the position of the player
+     */
     public void setWhereWasPlayer(){
         int x = (int) (player.getX()/StaticThings.RECT_SIZE);
         int y = (int) (player.getY()/StaticThings.RECT_SIZE);
@@ -60,6 +69,9 @@ public class Level {
         }
     }
 
+    /**
+     * Method that sets the collisions and position of entities in the level
+     */
     public void setImgArray(){
         int ghostIndex = 0;
         for (int i = 0; i < height; i++) {
@@ -81,6 +93,10 @@ public class Level {
         collisionMap = new CollisionMap(imgArray, width, height);
     }
 
+    /**
+     * Method that draws the level
+     * @param g Graphics object from the panel
+     */
     public void draw(Graphics g){
         g.setColor(new Color(0, 0, 255));
         for (int i = 0; i < height; i++) {
@@ -105,6 +121,12 @@ public class Level {
         }
     }
 
+    /**
+     * Method that checks if somewhere in the level is a big point
+     * @param x position in the map
+     * @param y position in the map
+     * @return true if there is a big point, false if not
+     */
     public boolean getBigPoint(int x, int y){
         if ((imgArray[y][x-1] == 1 && imgArray[y-1][x] == 1 && imgArray[y][x+1] != 1 && imgArray[y+1][x] != 1) //left up
                 || (imgArray[y][x+1] == 1 && imgArray[y-1][x] == 1 && imgArray[y][x-1] != 1 && imgArray[y+1][x] != 1)  //right up
@@ -117,10 +139,20 @@ public class Level {
         return false;
     }
 
+    /**
+     * Method that checks if the position is a wall
+     * @param x position in the map
+     * @param y position in the map
+     * @return true if the position is a wall, false if not
+     */
     public boolean isWall(int x, int y){
         return collisionMap.getBlock(x, y).isInside(x, y);
     }
 
+    /**
+     * Method that checks if the player was in every possible position in the level
+     * @return true if the player was in every position, false if not
+     */
     public boolean wasPlayerEverywhere(){
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
@@ -132,6 +164,10 @@ public class Level {
         return true;
     }
 
+    /**
+     * Method that returns names of all the map images
+     * @return array of names of the map images
+     */
     public static String[] getImages(){
         boolean canGo = true;
         while(canGo){

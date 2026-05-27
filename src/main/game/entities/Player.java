@@ -6,17 +6,20 @@ import main.game.levels.Level;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * Class that represents the player of the game
+ */
 public class Player{
 
     private Movement lastMovement = Movement.NONE;
     private Movement nextMovement = Movement.NONE;
     private boolean dead = false;
 
-    private BufferedImage[][] img = new BufferedImage[4][2];
+    private final BufferedImage[][] img = new BufferedImage[4][2];
 
     private int lives = 3;
 
-    private float speed = 1f;
+    private final float speed = 1f;
     private float x = 0;
     private float y = 0;
 
@@ -38,6 +41,9 @@ public class Player{
         setImgs();
     }
 
+    /**
+     * Method that loads all the images of the player
+     */
     private void setImgs(){
         String[] arr = {"up", "down", "left", "right"};
         for (int i = 0; i < img.length; i++) {
@@ -46,6 +52,9 @@ public class Player{
         }
     }
 
+    /**
+     * Method that updates the animation counter
+     */
     public void updateAnimCounter(){
         animCounter++;
         if (animCounter > (ANIM_COUNTER_MAX*2)) {
@@ -53,6 +62,10 @@ public class Player{
         }
     }
 
+    /**
+     * Method that checks if the animation counter is greater than the max value
+     * @return true if the animation counter is greater than the max value, false if not
+     */
     public boolean getChangeSprite(){
         if (animCounter > ANIM_COUNTER_MAX){
             return true;
@@ -60,15 +73,24 @@ public class Player{
         return false;
     }
 
+    /**
+     * Method that normally increases the score of the player
+     */
     public void increaseScore(){
         score += 10;
     }
 
+    /**
+     * Method that increases the score of the player by 50 points and sets the player to hunting mode
+     */
     public void bigIncreaseScore(){
         this.score += 50;
         this.isHunting = true;
     }
 
+    /**
+     * Method that adds the score when the player eats a ghost
+     */
     public void ghostsIncreaseScore(){
         this.score += 200;
     }
@@ -77,10 +99,16 @@ public class Player{
         return score;
     }
 
+    /**
+     * Method that decreases the lives of the player
+     */
     public void decreaseLives(){
         if (lives > 0) lives--;
     }
 
+    /**
+     * Method that checks if the player is dead
+     */
     public void death(){
         if (lives == 0) dead = true;
     }
@@ -114,7 +142,10 @@ public class Player{
     }
 
 
-
+    /**
+     * Method that sets the last movement of the player
+     * depending on if the player can move in that direction
+     */
     public void setLastMovement(){
         switch (nextMovement) {
             case Movement.UP -> {
@@ -144,10 +175,17 @@ public class Player{
         }
     }
 
+    /**
+     * Method that sets the first movement of the player
+     */
     public void setFirstMovement(){
         lastMovement = StaticThings.getMovements(level, hitbox, speed, lastMovement).getFirst();
     }
 
+    /**
+     * Method that sets the next movement of the player
+     * @param nextMovement chosen movement
+     */
     public void setNextMovement(Movement nextMovement){
         this.nextMovement = nextMovement;
     }
@@ -160,7 +198,10 @@ public class Player{
         return y;
     }
 
-
+    /**
+     * Method that changes the x position of the player
+     * @param num number of pixels to move
+     */
     public void setX(float num) {
         if ((x + num) > 0 && (x + num) < StaticThings.PANEL_WIDTH - hitbox.width) {
             this.x += num;
@@ -168,6 +209,10 @@ public class Player{
         }
     }
 
+    /**
+     * Method that changes the y position of the player
+     * @param num number of pixels to move
+     */
     public void setY(float num) {
         if ((y + num) < StaticThings.PANEL_HEIGHT - hitbox.height && (y + num) > 0) {
             this.y += num;
@@ -175,6 +220,11 @@ public class Player{
         }
     }
 
+    /**
+     * Method that sets the default position of the player
+     * @param x position in the map
+     * @param y position in the map
+     */
     public void setDefaultPosition(float x, float y){
         this.x = x;
         this.y = y;
@@ -191,6 +241,9 @@ public class Player{
         return defaultY;
     }
 
+    /**
+     * Method that updates the movement of the player
+     */
     public void updateMovement(){
 
         setLastMovement();
@@ -224,6 +277,10 @@ public class Player{
         updateHitBox();
     }
 
+    /**
+     * Method that draws the player
+     * @param g Graphics object from the panel
+     */
     public void draw(Graphics g){
         switch (lastMovement) {
             case Movement.UP -> {
@@ -257,9 +314,16 @@ public class Player{
         }
     }
 
+    /**
+     * Method that sets the hitbox of the player
+     */
     public void setHitbox(){
         hitbox = new Rectangle((int)x, (int)y, StaticThings.RECT_SIZE, StaticThings.RECT_SIZE);
     }
+
+    /**
+     * Method that updates the hitbox of the player
+     */
     public void updateHitBox(){
         hitbox.x = (int)x;
         hitbox.y = (int)y;

@@ -10,14 +10,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * Class that represents the main game panel of the game
+ */
 public class MainGamePanel extends JPanel {
 
-    private Player player;
+    private final Player player;
 
-    private Ghost[] ghosts;
-    private String[] ghostNames = {"blinky", "pinky", "inky", "clyde"};
+    private final Ghost[] ghosts;
+    private final String[] ghostNames = {"blinky", "pinky", "inky", "clyde"};
 
-    private MyKeyListener keyListener;
+    private final MyKeyListener keyListener;
     private Level level;
 
     public MainGamePanel(BufferedImage mapImg){
@@ -66,12 +69,19 @@ public class MainGamePanel extends JPanel {
         return level;
     }
 
+    /**
+     * Method that creates the ghosts objects
+     */
     public void setGhosts(){
         for (int i = 0; i < ghostNames.length; i++) {
             this.ghosts[i] = new Ghost(ghostNames[i], player);
         }
     }
 
+    /**
+     * Method that draws the game
+     * @param g the <code>Graphics</code> object to protect
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -85,12 +95,19 @@ public class MainGamePanel extends JPanel {
 //        g.fillRect((int) player.getX() + 5, (int) player.getY() + 5, player.getSIZE(), player.getSIZE());
     }
 
+    /**
+     * Method that draws the ghosts
+     * @param g Graphics object from the panel
+     */
     public void drawGhosts(Graphics g){
         for (int i = 0; i < ghosts.length; i++) {
             ghosts[i].draw(g);
         }
     }
 
+    /**
+     * Method that updates the movements of the player and the ghosts
+     */
     public void updateMovements(){
         player.updateMovement();
         for (int i = 0; i < ghosts.length; i++) {

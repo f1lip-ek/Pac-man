@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * Class that represents the panel from which the user can choose the map to play
+ */
 public class MapChoose extends JPanel {
 
     private String[] maps;
@@ -16,13 +19,13 @@ public class MapChoose extends JPanel {
     private int mapChoosenIndex;
 
     private JComboBox<String> mapChooser;
-    private JButton playButton;
-    private JButton exitButton;
+    private final JButton playButton;
+    private final JButton exitButton;
 
     private JPanel viewMap;
 
-    private StartFrame startFrame;
-    private StartGamePanel startPanel;
+    private final StartFrame startFrame;
+    private final StartGamePanel startPanel;
 
     public MapChoose(StartFrame startFrame, StartGamePanel startPanel){
         this.startPanel = startPanel;
@@ -40,7 +43,10 @@ public class MapChoose extends JPanel {
         addButtonsToPanel();
     }
 
-    public void setViewMap(){
+    /**
+     * Method to set the preview of the choosen map
+     */
+    private void setViewMap(){
         this.viewMap = new JPanel(){
             @Override
             protected void paintComponent(Graphics g) {
@@ -52,7 +58,10 @@ public class MapChoose extends JPanel {
         this.viewMap.setBackground(Color.BLACK);
     }
 
-    public void setMapChooser(){
+    /**
+     * Method to set the JComboBox with all of the aviable maps
+     */
+    private void setMapChooser(){
         String[] mapNames = new String[maps.length+1];
         mapNames[0] = " ";
         for (int i = 1; i <= maps.length; i++) {
@@ -68,6 +77,9 @@ public class MapChoose extends JPanel {
         });
     }
 
+    /**
+     * Method to set the action listeners of the buttons
+     */
     private void setButtons(){
         this.playButton.addActionListener(e -> {
             if (mapChooser.getSelectedIndex() != 0){
@@ -82,7 +94,10 @@ public class MapChoose extends JPanel {
         });
     }
 
-    public void addButtonsToPanel(){
+    /**
+     * Method to add the buttons to the panel
+     */
+    private void addButtonsToPanel(){
         JPanel panel = new JPanel();
         panel.setBounds(0, 500, 800, 100);
         panel.setLayout(new GridLayout(1, 2, 100, 0));

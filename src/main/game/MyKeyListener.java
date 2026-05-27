@@ -6,6 +6,9 @@ import main.game.entities.Player;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * Class that represents the key listener of the game
+ */
 public class MyKeyListener implements KeyListener {
 
     private Player player;

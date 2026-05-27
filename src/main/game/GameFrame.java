@@ -6,15 +6,18 @@ import main.gameOver.GameOverFrame;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * Class that represents the game frame that appears when the game starts
+ */
 public class GameFrame extends JFrame {
 
-    private GamePanel gamePanel;
+    private final GamePanel gamePanel;
     private Thread gameThread;
-    private GameLoop gameLoop;
-    private GameOverFrame gameOverFrame;
+    private final GameLoop gameLoop;
+    private final GameOverFrame gameOverFrame;
 
-    private int score = 0;
-    private int gameType;
+    private final int score = 0;
+    private final int gameType;
     private int level = 1;
 
     public GameFrame(BufferedImage mapImg, int gameType){
@@ -38,6 +41,11 @@ public class GameFrame extends JFrame {
         this.pack();
     }
 
+    /**
+     * Method that checks if the game is over and if it is, it calls the GameOverFrame
+     * @param score that the player got
+     * @param ending if the player won or lost
+     */
     public void viewEnd(int score, int ending){
         if (gameType == 1 && ending == 1 && Level.getNumOfMaps() != level) {
             this.level++;
@@ -53,6 +61,11 @@ public class GameFrame extends JFrame {
         }
     }
 
+    /**
+     * Method to view the frame
+     * @param mapImg that the player is playing on
+     * @param gameType that the player is playing
+     */
     public static void view(BufferedImage mapImg, int gameType){
         new GameFrame(mapImg, gameType).setVisible(true);
     }

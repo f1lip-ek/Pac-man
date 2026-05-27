@@ -8,11 +8,14 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Class that represents a ghost of the game
+ */
 public class Ghost {
 
     private Movement lastMovement = Movement.NONE;
 
-    private float speed = 1f;
+    private final float speed = 1f;
     private float x = 0;
     private float y = 0;
 
@@ -21,14 +24,14 @@ public class Ghost {
 
     private boolean wasHaunted = false;
 
-    private String name;
+    private final String name;
 
-    private BufferedImage[] img = new BufferedImage[5];
+    private final BufferedImage[] img = new BufferedImage[5];
 
     private Rectangle hitbox;
     private Level level;
-    private Player player;
-    private Random rd;
+    private final Player player;
+    private final Random rd;
 
     public Ghost(String name, Player player){
         setHitbox();
@@ -42,6 +45,9 @@ public class Ghost {
         this.level = level;
     }
 
+    /**
+     * Method that loads all the images of the ghosts
+     */
     private void setImgs(){
         String[] arr = {"up", "down", "left", "right"};
         for (int i = 0; i < arr.length; i++) {
@@ -50,6 +56,9 @@ public class Ghost {
         img[4] = StaticThings.getImage("/entities/vulnerable/vulnerable.png");
     }
 
+    /**
+     * Method that sets the ghost to the default position
+     */
     public void setDefaultXY() {
         this.x = this.defaultX;
         this.y = this.defaultY;
@@ -68,18 +77,31 @@ public class Ghost {
         return hitbox;
     }
 
+    /**
+     * Method that changes the x position of the ghost
+     * @param num number of pixels to move
+     */
     public void setX(float num) {
         if ((x + num) > 0 && (x + num) < StaticThings.PANEL_WIDTH - hitbox.width) {
             this.x += num;
         }
     }
 
+    /**
+     * Method that changes the y position of the ghost
+     * @param num number of pixels to move
+     */
     public void setY(float num) {
         if ((y + num) < StaticThings.PANEL_HEIGHT - hitbox.height && (y + num) > 0) {
             this.y += num;
         }
     }
 
+    /**
+     * Method that sets the default position of the ghost
+     * @param x position in the map
+     * @param y position in the map
+     */
     public void setDefaultPosition(float x, float y){
         this.x = x;
         this.y = y;
@@ -88,6 +110,9 @@ public class Ghost {
         updateHitBox();
     }
 
+    /**
+     * Method that updates the movement of the ghost
+     */
     public void updateMovement(){
         setLastMovement();
 
@@ -120,6 +145,9 @@ public class Ghost {
         updateHitBox();
     }
 
+    /**
+     * Method that generates a random movement for the ghost
+     */
     public void setLastMovement(){
         ArrayList<Movement> list = StaticThings.getMovements(level, hitbox, speed, lastMovement);
 
@@ -131,6 +159,10 @@ public class Ghost {
         }
     }
 
+    /**
+     * Method that draws the ghost
+     * @param g Graphics object from the panel
+     */
     public void draw(Graphics g){
         if (!wasHaunted && player.isHunting()) {
             g.drawImage(img[4], (int) x + 5, (int) y + 5, null);
@@ -146,9 +178,16 @@ public class Ghost {
 //        g.drawRect((int)x + 5, (int)y + 5, 30, 30);
     }
 
+    /**
+     * Method that sets the hitbox of the ghost
+     */
     public void setHitbox(){
         hitbox = new Rectangle((int)this.x, (int)this.y, StaticThings.RECT_SIZE, StaticThings.RECT_SIZE);
     }
+
+    /**
+     * Method that updates the hitbox of the ghost
+     */
     public void updateHitBox(){
         hitbox.x = (int)x;
         hitbox.y = (int)y;

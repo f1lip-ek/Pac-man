@@ -7,9 +7,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * Class that represents the panel that shows the health of the player
+ */
 public class HealthPanel extends JPanel {
 
-    private BufferedImage image;
+    private final BufferedImage image;
     private int health;
 
     public HealthPanel(Player p){
@@ -25,6 +28,10 @@ public class HealthPanel extends JPanel {
 
     }
 
+    /**
+     * Method that paints the health of the player
+     * @param g the <code>Graphics</code> object to protect
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

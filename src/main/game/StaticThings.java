@@ -10,12 +10,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+/**
+ * Class that contains all the static methods and variables of the game
+ */
 public class StaticThings {
 
     public static final int PANEL_HEIGHT = 600;
     public static final int PANEL_WIDTH = 800;
     public static final int RECT_SIZE = 40;
 
+    /**
+     * Method that loads an image from the resources folder
+     * @param path to the image
+     * @return BufferedImage of the loaded image
+     */
     public static BufferedImage getImage(String path){
         BufferedImage img = null;
         try(InputStream is = StaticThings.class.getResourceAsStream(path)){
@@ -26,8 +34,16 @@ public class StaticThings {
         return img;
     }
 
+    /**
+     * Method that returns all the possible movements of the player
+     * @param level in which the entity is
+     * @param hitbox of the entity
+     * @param speed of the entity
+     * @param lastMovement that the entity did
+     * @return ArrayList of possible movements
+     */
     public static ArrayList<Movement> getMovements(Level level, Rectangle hitbox, float speed, Movement lastMovement){
-        ArrayList<Movement> list = new ArrayList<>();
+        final ArrayList<Movement> list = new ArrayList<>();
 
         if (!level.isWall(hitbox.x, (int) (hitbox.y - speed)) &&
                 !level.isWall(hitbox.x + hitbox.width - 1, (int) (hitbox.y - speed))){

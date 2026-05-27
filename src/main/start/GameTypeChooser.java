@@ -7,18 +7,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * Class that represents the panel from which the user can choose the game type to play
+ */
 public class GameTypeChooser extends JPanel {
 
     private int gameType;
 
-    private JLabel label;
+    private final JLabel label;
 
-    private JButton progressiveTypeButton;
-    private JButton customTypeButton;
-    private JButton exitButton;
+    private final JButton progressiveTypeButton;
+    private final JButton customTypeButton;
+    private final JButton exitButton;
 
-    private StartGamePanel startPanel;
-    private StartFrame startFrame;
+    private final StartGamePanel startPanel;
+    private final StartFrame startFrame;
 
     public GameTypeChooser(StartGamePanel startPanel, StartFrame startFrame){
         this.startFrame = startFrame;
@@ -36,6 +39,9 @@ public class GameTypeChooser extends JPanel {
         addButtonsToPanel();
     }
 
+    /**
+     * Method to set the action listeners for the buttons
+     */
     private void setButtons(){
         this.progressiveTypeButton.addActionListener(e -> {
             this.gameType = 1;
@@ -52,7 +58,10 @@ public class GameTypeChooser extends JPanel {
         });
     }
 
-    public void addButtonsToPanel(){
+    /**
+     * Method to add the buttons to the panel
+     */
+    private void addButtonsToPanel(){
         JPanel panel = new JPanel();
         panel.setBounds(0, 500, 800, 100);
         panel.setLayout(null);
@@ -65,6 +74,10 @@ public class GameTypeChooser extends JPanel {
         this.add(panel);
     }
 
+    /**
+     * Method to create the panel with the buttons
+     * @return JPanel with added buttons
+     */
     private JPanel buttonPanel(){
         JPanel panel = new JPanel();
         panel.setBounds(0, 100, 800, 400);
@@ -79,6 +92,9 @@ public class GameTypeChooser extends JPanel {
         return panel;
     }
 
+    /**
+     * Method to set the label to say to the player what they need to do in this panel
+     */
     private void setLabel(){
         this.label.setHorizontalAlignment(JLabel.CENTER);
         this.label.setBounds(0, 50, 800, 50);

@@ -5,19 +5,22 @@ import main.game.StaticThings;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Class that represents the panel that appears when the game starts
+ */
 public class StartGamePanel extends JPanel {
 
-    private CardLayout cardLayout;
+    private final CardLayout cardLayout;
 
-    private JPanel mainPanel;
-    private MapChoose mapChoose;
-    private GameTypeChooser gameTypeChooser;
+    private final JPanel mainPanel;
+    private final MapChoose mapChoose;
+    private final GameTypeChooser gameTypeChooser;
 
-    private JLabel label;
+    private final JLabel label;
 
-    private JButton playButton;
-    private JButton gameTypeButton;
-    private JButton exitButton;
+    private final JButton playButton;
+    private final JButton gameTypeButton;
+    private final JButton exitButton;
 
     private StartFrame startFrame;
 
@@ -48,15 +51,20 @@ public class StartGamePanel extends JPanel {
         this.cardLayout.show(this, "mainPanel");
     }
 
-    public void setLabel(){
+    /**
+     * Method to set the label with the title of the game
+     */
+    private void setLabel(){
         this.label.setPreferredSize(new Dimension(StaticThings.PANEL_WIDTH, (StaticThings.PANEL_HEIGHT/5)*4));
         this.label.setFont(new Font("Arial", Font.BOLD, 50));
         this.label.setForeground(Color.WHITE);
         this.mainPanel.add(label);
     }
 
-    public void setButtons() {
-
+    /**
+     * Method to set position and action listeners of the buttons at the start of the game
+     */
+    private void setButtons() {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(StaticThings.PANEL_WIDTH, StaticThings.PANEL_HEIGHT/5));
         panel.setLayout(new GridLayout(1, 2, 50, 0));
@@ -65,16 +73,11 @@ public class StartGamePanel extends JPanel {
         this.playButton.addActionListener(_ -> {
             this.cardLayout.show(this, "gameType");
         });
-
-        this.gameTypeButton.addActionListener(_ -> {
-            this.cardLayout.show(this, "gameType");
-        });
         this.exitButton.addActionListener(_ -> {
             System.exit(0);
         });
 
         panel.add(playButton);
-//        panel.add(gameTypeButton);
         panel.add(exitButton);
         this.mainPanel.add(panel);
 
@@ -84,11 +87,14 @@ public class StartGamePanel extends JPanel {
         return cardLayout;
     }
 
+    /**
+     * Method to play again when the player loses or wins
+     */
     public void playAgain(){
         this.startFrame.setVisible(true);
         this.mapChoose.getMapChooser().setSelectedIndex(mapChoose.getMapChoosenIndex());
         this.mapChoose.getViewMap().repaint();
-        this.cardLayout.show(this, "mainPanel");
+        this.cardLayout.show(this, "gameType");
     }
 
 }

@@ -1,9 +1,12 @@
 package main.game;
 
+/**
+ * Class that represents the game loop of the game
+ */
 public class GameLoop implements Runnable{
 
-    private GamePanel panel;
-    private GameFrame gameFrame;
+    private final GamePanel panel;
+    private final GameFrame gameFrame;
 
     private final int FPS = 120;
     private final int TIMER_HUNTING = 20*FPS;
@@ -13,6 +16,9 @@ public class GameLoop implements Runnable{
         this.gameFrame = gameFrame;
     }
 
+    /**
+     * Method that contains the whole game loop to moving etc.
+     */
     @Override
     public void run() {
 
@@ -85,7 +91,10 @@ public class GameLoop implements Runnable{
         }
     }
 
-    public void collide(){
+    /**
+     * Method that checks if the player collides with the ghost
+     */
+    private void collide(){
         for (int i = 0; i < panel.getMainGamePanel().getGhosts().length; i++) {
             if (panel.getMainGamePanel().getPlayer().getHitbox().intersects(panel.getMainGamePanel().getGhosts()[i].getHitbox())){
                 if (panel.getMainGamePanel().getPlayer().isHunting() && !panel.getMainGamePanel().getGhosts()[i].getWasHaunted()){
@@ -114,7 +123,10 @@ public class GameLoop implements Runnable{
             }
         }
     }
-    
+
+    /**
+     * Method that sets the first movement of the ghosts
+     */
     public void setGhostsFirstMovement(){
         for (int i = 0; i < panel.getMainGamePanel().getGhosts().length; i++) {
             panel.getMainGamePanel().getGhosts()[i].setLastMovement();

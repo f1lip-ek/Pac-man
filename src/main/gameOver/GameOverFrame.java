@@ -2,9 +2,12 @@ package main.gameOver;
 
 import javax.swing.*;
 
+/**
+ * Class that represents the frame that appears when the game ends
+ */
 public class GameOverFrame extends JFrame {
 
-    private GameOverPanel gameOverPanel;
+    private final GameOverPanel gameOverPanel;
 
     public GameOverFrame(){
         this.gameOverPanel = new GameOverPanel(this);
@@ -17,6 +20,11 @@ public class GameOverFrame extends JFrame {
         this.pack();
     }
 
+    /**
+     * Method to view the frame
+     * @param score that the player got
+     * @param ending if the player won or lost
+     */
     public void view(int score, int ending){
         this.gameOverPanel.setNums(score, ending);
         this.gameOverPanel.setEndingText();

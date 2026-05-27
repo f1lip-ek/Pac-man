@@ -2,6 +2,9 @@ package main.start;
 
 import javax.swing.*;
 
+/**
+ * Class that represents the frame at the start of the game
+ */
 public class StartFrame extends JFrame {
 
     private static StartGamePanel startGamePanel;
@@ -17,11 +20,17 @@ public class StartFrame extends JFrame {
         this.pack();
     }
 
+    /**
+     * Method for viewing the frame
+     */
     public static void view(){
         StartFrame f = new StartFrame();
         f.setVisible(true);
     }
 
+    /**
+     * Method
+     */
     public static void playAgain(){
         startGamePanel.playAgain();
     }

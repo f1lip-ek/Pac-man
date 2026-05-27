@@ -8,11 +8,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * Class that represents the main panel of the game
+ */
 public class GamePanel extends JPanel {
 
-    private MainGamePanel mainGamePanel;
-    private HealthPanel healthPanel;
-    private PointPanel pointPanel;
+    private final MainGamePanel mainGamePanel;
+    private final HealthPanel healthPanel;
+    private final PointPanel pointPanel;
 
 
     public GamePanel(BufferedImage mapImg){
@@ -27,7 +30,10 @@ public class GamePanel extends JPanel {
         panel();
     }
 
-    public void panel(){
+    /**
+     * Method to add the health and score panel for viewing
+     */
+    private void panel(){
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(1, 2));
         panel.setPreferredSize(new Dimension(StaticThings.PANEL_WIDTH, StaticThings.RECT_SIZE));

@@ -6,16 +6,19 @@ import main.start.StartFrame;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Class that represents the panel that appears when the game ends
+ */
 public class GameOverPanel extends JPanel {
 
-    private JLabel label;
-    private JLabel label2;
+    private final JLabel label;
+    private final JLabel label2;
 
-    private JButton playAgainButton;
-    private JButton exitButton;
-    private JButton goMainMenuButton;
+    private final JButton playAgainButton;
+    private final JButton exitButton;
+    private final JButton goMainMenuButton;
 
-    private GameOverFrame gameOverFrame;
+    private final GameOverFrame gameOverFrame;
 
     private int score;
     private int ending;
@@ -39,6 +42,9 @@ public class GameOverPanel extends JPanel {
         this.setButtons();
     }
 
+    /**
+     * Method that sets the text of the labels depending on the ending of the game
+     */
     public void setEndingText(){
         if (ending == 2) { // lose
             this.label.setText(endingText[0]);
@@ -49,17 +55,20 @@ public class GameOverPanel extends JPanel {
         }
     }
 
-    public void setLabels(){
-        JPanel panel = new JPanel();
+    /**
+     * Method that sets the labels that appear when the game ends
+     */
+    private void setLabels(){
+        final JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(StaticThings.PANEL_WIDTH, (StaticThings.PANEL_HEIGHT/5)*4));
         panel.setLayout(new GridLayout(2, 1));
         panel.setBackground(Color.BLACK);
 
-        JPanel labelPanel = new JPanel();
+        final JPanel labelPanel = new JPanel();
         labelPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         labelPanel.setBackground(Color.BLACK);
 
-        JPanel labelPanel2 = new JPanel();
+        final JPanel labelPanel2 = new JPanel();
         labelPanel2.setLayout(new FlowLayout(FlowLayout.CENTER));
         labelPanel2.setBackground(Color.BLACK);
 
@@ -77,13 +86,21 @@ public class GameOverPanel extends JPanel {
         this.add(panel);
     }
 
+    /**
+     * Method to set the score and ending of the game
+     * @param score that the player got
+     * @param ending if the player won or lost
+     */
     public void setNums(int score, int ending){
         this.score = score;
         this.ending = ending;
     }
 
-    public void setButtons(){
-        JPanel panel = new JPanel();
+    /**
+     * Method that sets the buttons that appear when the game ends
+     */
+    private void setButtons(){
+        final JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(StaticThings.PANEL_WIDTH, StaticThings.PANEL_HEIGHT/5));
         panel.setLayout(new GridLayout(1, 3, 50, 0));
         panel.setBackground(Color.BLACK);

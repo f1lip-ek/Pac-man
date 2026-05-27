@@ -1,12 +1,15 @@
 package main.game.levels;
 
+/**
+ * Class that represents a block of the level
+ */
 public class Block {
 
-    private int x1;
-    private int x2;
-    private int y1;
-    private int y2;
-    private boolean isWall;
+    private final int x1;
+    private final int x2;
+    private final int y1;
+    private final int y2;
+    private final boolean isWall;
 
     public Block(int x1, int x2, int y1, int y2, boolean isWall){
         this.x1 = x1;
@@ -16,6 +19,12 @@ public class Block {
         this.isWall = isWall;
     }
 
+    /**
+     * Method that checks if the given position is inside the block
+     * @param x position in the map
+     * @param y position in the map
+     * @return true if the position is inside the block, false if not
+     */
     public boolean isInside(int x, int y){
         if (x >= x1 && x <= x2 && y >= y1 && y <= y2){
             return isWall;
