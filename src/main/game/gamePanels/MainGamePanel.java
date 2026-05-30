@@ -44,6 +44,10 @@ public class MainGamePanel extends JPanel {
         System.out.println(level);
     }
 
+    /**
+     * Method that sets the level of the game
+     * @param mapIndex index of the map
+     */
     public void setLevel(int mapIndex){
         this.level = new Level(player, ghosts, StaticThings.getImage("/maps/map_0" + mapIndex + ".png"));
         this.level.setImgArray();
@@ -51,6 +55,10 @@ public class MainGamePanel extends JPanel {
         setGhostsLevel(level);
     }
 
+    /**
+     * Method that sets the level to the ghost's objects
+     * @param level level of the game
+     */
     public void setGhostsLevel(Level level){
         for (int i = 0; i < ghosts.length; i++) {
             ghosts[i].setLevel(level);
@@ -70,7 +78,7 @@ public class MainGamePanel extends JPanel {
     }
 
     /**
-     * Method that creates the ghosts objects
+     * Method that creates the ghost's objects
      */
     public void setGhosts(){
         for (int i = 0; i < ghostNames.length; i++) {
