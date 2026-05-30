@@ -1,9 +1,11 @@
 package main.game;
 
+import main.Main;
 import main.game.entities.Movement;
 import main.game.levels.Level;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -69,5 +71,24 @@ public class StaticThings {
             case Movement.RIGHT -> list.remove(Movement.RIGHT);
         }
         return list;
+    }
+
+    /**
+     * Method that plays a sound
+     * @param path to the sound
+     * @author Matěj Chaloupka
+     */
+    public static Clip playSound(String path){
+        try{
+            final InputStream fis = Main.class.getResourceAsStream(path);
+            assert fis != null;
+            final AudioInputStream ais = AudioSystem.getAudioInputStream(fis);
+            final Clip clip = AudioSystem.getClip();
+            clip.open(ais);
+            return clip;
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }
