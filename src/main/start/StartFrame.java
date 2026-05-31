@@ -29,6 +29,9 @@ public class StartFrame extends JFrame {
         this.sound.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
+    /**
+     * Method for disposing the frame and stopping the music
+     */
     public void disposeThis(){
         this.dispose();
         this.sound.stop();
@@ -42,7 +45,7 @@ public class StartFrame extends JFrame {
     }
 
     /**
-     * Method
+     * Method for playing again
      */
     public static void playAgain(){
         startGamePanel.playAgain();

@@ -21,6 +21,10 @@ public class MyKeyListener implements KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {}
 
+    /**
+     * Method that sets the next movement of the player depending on the key pressed
+     * @param e the event to be processed
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()){
