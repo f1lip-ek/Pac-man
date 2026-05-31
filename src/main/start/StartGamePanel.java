@@ -58,6 +58,8 @@ public class StartGamePanel extends JPanel {
         this.label.setPreferredSize(new Dimension(StaticThings.PANEL_WIDTH, (StaticThings.PANEL_HEIGHT/5)*4));
         this.label.setFont(new Font("Arial", Font.BOLD, 50));
         this.label.setForeground(Color.WHITE);
+        this.label.setHorizontalAlignment(JLabel.CENTER);
+        this.label.setVerticalAlignment(JLabel.CENTER);
         this.mainPanel.add(label);
     }
 
