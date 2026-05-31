@@ -107,8 +107,10 @@ public class StaticThings {
         button.setForeground(fontColor);
         button.setFont(new Font("Arial", Font.BOLD, 25));
 
+        button.setOpaque(true);
         button.setFocusPainted(false);
         button.setBorderPainted(false);
+        button.setContentAreaFilled(true);
 
     }
 }
