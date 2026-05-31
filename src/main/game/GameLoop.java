@@ -1,5 +1,7 @@
 package main.game;
 
+import javax.sound.sampled.Clip;
+
 /**
  * Class that represents the game loop of the game
  */
@@ -11,9 +13,13 @@ public class GameLoop implements Runnable{
     private final int FPS = 120;
     private final int TIMER_HUNTING = 20*FPS;
 
+    private Clip death;
+
     public GameLoop(GamePanel panel, GameFrame gameFrame){
         this.panel = panel;
         this.gameFrame = gameFrame;
+
+        this.death = StaticThings.playSound("/music/death.wav");
     }
 
     /**
@@ -101,6 +107,7 @@ public class GameLoop implements Runnable{
                     panel.getMainGamePanel().getGhosts()[i].setDefaultXY();
                     panel.getMainGamePanel().getGhosts()[i].setWasHaunted(true);
                 } else {
+                    StaticThings.playSound("/music/death.wav").start();
                     panel.getMainGamePanel().getPlayer().decreaseLives();
                     panel.getHealthPanel().setHealth(panel.getMainGamePanel().getPlayer().getLives());
                     panel.getHealthPanel().repaint();
