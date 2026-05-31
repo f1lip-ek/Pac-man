@@ -9,6 +9,7 @@ import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -83,7 +84,8 @@ public class StaticThings {
         try{
             final InputStream fis = Main.class.getResourceAsStream(path);
             assert fis != null;
-            final AudioInputStream ais = AudioSystem.getAudioInputStream(fis);
+            final InputStream bufferedIn = new BufferedInputStream(fis);
+            final AudioInputStream ais = AudioSystem.getAudioInputStream(bufferedIn);
             final Clip clip = AudioSystem.getClip();
             clip.open(ais);
             return clip;
