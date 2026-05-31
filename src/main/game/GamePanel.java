@@ -34,7 +34,7 @@ public class GamePanel extends JPanel {
         panel();
 
         this.gameThread = new Thread(gameLoop);
-        this.gameThread.start();
+//        this.gameThread.start();
     }
 
     /**
