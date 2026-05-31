@@ -83,6 +83,12 @@ public class GameLoop implements Runnable{
             gameFrame.viewEnd(panel.getMainGamePanel().getPlayer().getScore(), 2);
         } else {
             System.err.println("You Win");
+            StaticThings.playSound("/music/win.wav").start();
+            try{
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             gameFrame.viewEnd(panel.getMainGamePanel().getPlayer().getScore(), 1);
         }
     }
@@ -95,13 +101,15 @@ public class GameLoop implements Runnable{
             if (panel.getMainGamePanel().getPlayer().getHitbox().intersects(panel.getMainGamePanel().getGhosts()[i].getHitbox())){
                 if (panel.getMainGamePanel().getPlayer().isHunting() && !panel.getMainGamePanel().getGhosts()[i].getWasHaunted()){
                     panel.getMainGamePanel().getPlayer().ghostsIncreaseScore();
+                    StaticThings.playSound("/music/ghostReturning.wav").start();
+                    panel.getMainGamePanel().getGhosts()[i].setDefaultXY();
+                    panel.getMainGamePanel().getGhosts()[i].setWasHaunted(true);
+                    panel.getMainGamePanel().repaint();
                     try{
-                        Thread.sleep(250);
+                        Thread.sleep(1200);
                     } catch (InterruptedException e) {
                         System.err.println(e.getMessage());
                     }
-                    panel.getMainGamePanel().getGhosts()[i].setDefaultXY();
-                    panel.getMainGamePanel().getGhosts()[i].setWasHaunted(true);
                 } else {
                     StaticThings.playSound("/music/death.wav").start();
                     panel.getMainGamePanel().getPlayer().decreaseLives();
