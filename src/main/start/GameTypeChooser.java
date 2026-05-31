@@ -46,7 +46,7 @@ public class GameTypeChooser extends JPanel {
         this.progressiveTypeButton.addActionListener(e -> {
             this.gameType = 1;
             BufferedImage mapImg = StaticThings.getImage("/maps/map_01.png");
-            startFrame.dispose();
+            startFrame.disposeThis();
             GameFrame.view(mapImg, gameType);
         });
         this.customTypeButton.addActionListener(e -> {
