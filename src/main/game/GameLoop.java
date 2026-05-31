@@ -13,13 +13,9 @@ public class GameLoop implements Runnable{
     private final int FPS = 120;
     private final int TIMER_HUNTING = 20*FPS;
 
-    private Clip death;
-
     public GameLoop(GamePanel panel, GameFrame gameFrame){
         this.panel = panel;
         this.gameFrame = gameFrame;
-
-        this.death = StaticThings.playSound("/music/death.wav");
     }
 
     /**
