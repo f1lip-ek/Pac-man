@@ -62,15 +62,15 @@ public class GameOverPanel extends JPanel {
         final JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(StaticThings.PANEL_WIDTH, (StaticThings.PANEL_HEIGHT/5)*4));
         panel.setLayout(new GridLayout(2, 1));
-        panel.setBackground(Color.BLACK);
+        panel.setOpaque(false);
 
         final JPanel labelPanel = new JPanel();
         labelPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        labelPanel.setBackground(Color.BLACK);
+        labelPanel.setOpaque(false);
 
         final JPanel labelPanel2 = new JPanel();
         labelPanel2.setLayout(new FlowLayout(FlowLayout.CENTER));
-        labelPanel2.setBackground(Color.BLACK);
+        labelPanel2.setOpaque(false);
 
         this.label.setForeground(Color.WHITE);
         this.label2.setForeground(Color.WHITE);
@@ -103,7 +103,7 @@ public class GameOverPanel extends JPanel {
         final JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(StaticThings.PANEL_WIDTH, StaticThings.PANEL_HEIGHT/5));
         panel.setLayout(new GridLayout(1, 3, 50, 0));
-        panel.setBackground(Color.BLACK);
+        panel.setOpaque(false);
 
         StaticThings.editButton(this.playAgainButton, new Color(255, 244, 0), Color.BLACK);
         StaticThings.editButton(this.exitButton, new Color(255, 244, 0), Color.BLACK);
@@ -130,5 +130,6 @@ public class GameOverPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        g.drawImage(StaticThings.getImage("/bg.png"), 0, 0, null);
     }
 }

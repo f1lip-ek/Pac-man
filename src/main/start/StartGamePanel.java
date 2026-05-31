@@ -4,6 +4,7 @@ import main.game.StaticThings;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * Class that represents the panel that appears when the game starts
@@ -26,7 +27,13 @@ public class StartGamePanel extends JPanel {
 
     public StartGamePanel(StartFrame startFrame){
         this.startFrame = startFrame;
-        this.mainPanel = new JPanel();
+        this.mainPanel = new JPanel(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(StaticThings.getImage("/bg.png"), 0, 0, null);
+            }
+        };
         this.mapChoose = new MapChoose(startFrame, this);
         this.gameTypeChooser = new GameTypeChooser(this, startFrame);
 
@@ -57,7 +64,7 @@ public class StartGamePanel extends JPanel {
     private void setLabel(){
         this.label.setPreferredSize(new Dimension(StaticThings.PANEL_WIDTH, (StaticThings.PANEL_HEIGHT/5)*4));
         this.label.setFont(new Font("Arial", Font.BOLD, 50));
-        this.label.setForeground(Color.WHITE);
+        this.label.setForeground(new Color(255, 244, 0));
         this.label.setHorizontalAlignment(JLabel.CENTER);
         this.label.setVerticalAlignment(JLabel.CENTER);
         this.mainPanel.add(label);
@@ -70,7 +77,7 @@ public class StartGamePanel extends JPanel {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(StaticThings.PANEL_WIDTH, StaticThings.PANEL_HEIGHT/5));
         panel.setLayout(new GridLayout(1, 2, 50, 0));
-        panel.setBackground(Color.BLACK);
+        panel.setOpaque(false);
 
         StaticThings.editButton(this.playButton, new Color(255, 244, 0), Color.BLACK);
         StaticThings.editButton(this.exitButton, new Color(255, 244, 0), Color.BLACK);

@@ -66,6 +66,7 @@ public class GameTypeChooser extends JPanel {
         panel.setBounds(0, 500, 800, 100);
         panel.setLayout(null);
         panel.setBackground(Color.BLACK);
+        panel.setOpaque(false);
 
         exitButton.setBounds(300, 25, 200, 50);
         StaticThings.editButton(exitButton, new Color(255, 244, 0), Color.BLACK);
@@ -84,6 +85,7 @@ public class GameTypeChooser extends JPanel {
         panel.setBounds(0, 100, 800, 400);
         panel.setLayout(null);
         panel.setBackground(Color.BLACK);
+        panel.setOpaque(false);
 
         this.progressiveTypeButton.setBounds(300, 100, 200, 50);
         this.customTypeButton.setBounds(300, 200, 200, 50);
@@ -105,6 +107,12 @@ public class GameTypeChooser extends JPanel {
         this.label.setFont(new Font("Arial", Font.BOLD, 24));
         this.label.setForeground(Color.WHITE);
         this.add(label);
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(StaticThings.getImage("/bg.png"), 0, 0, null);
     }
 
 

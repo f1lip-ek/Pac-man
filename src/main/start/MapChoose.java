@@ -5,6 +5,7 @@ import main.game.StaticThings;
 import main.game.levels.Level;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -51,9 +52,14 @@ public class MapChoose extends JPanel {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
+                if (mapChoosen != null){
+                    g.setColor(Color.BLACK);
+                    g.fillRect(96, 6, 608, 458);
+                }
                 g.drawImage(mapChoosen, 100, 10, 600, 450, null);
             }
         };
+        this.viewMap.setOpaque(false);
         this.viewMap.setBounds(0, 31, 800, 469);
         this.viewMap.setBackground(Color.BLACK);
     }
@@ -102,6 +108,7 @@ public class MapChoose extends JPanel {
         panel.setBounds(0, 510, 800, 90);
         panel.setLayout(new GridLayout(1, 2, 100, 0));
         panel.setBackground(Color.BLACK);
+        panel.setOpaque(false);
 
         StaticThings.editButton(playButton, new Color(255, 244, 0), Color.BLACK);
         StaticThings.editButton(exitButton, new Color(255, 244, 0), Color.BLACK);
@@ -109,6 +116,12 @@ public class MapChoose extends JPanel {
         panel.add(playButton);
         panel.add(exitButton);
         this.add(panel);
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(StaticThings.getImage("/bg.png"), 0, 0, null);
     }
 
     public JComboBox<String> getMapChooser() {
