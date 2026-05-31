@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * Class that works as a switch between the countdown panel and the game panel
+ */
 public class SwitchingPanel extends JPanel {
 
     private final CountdownPanel countdownPanel;
@@ -26,6 +29,9 @@ public class SwitchingPanel extends JPanel {
         this.add(gamePanel, "game");
     }
 
+    /**
+     * Method that starts the countdown and then views the game
+     */
     public void startGame(){
         this.cardLayout.show(this, "countdown");
         new Thread(new Runnable() {

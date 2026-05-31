@@ -5,6 +5,9 @@ import main.game.StaticThings;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Class that represents the panel that shows the countdown before the game starts
+ */
 public class CountdownPanel extends JPanel {
 
     private int countdown = 3;
@@ -25,6 +28,9 @@ public class CountdownPanel extends JPanel {
         this.setVisible(true);
     }
 
+    /**
+     * Method that counts down to the start of the game
+     */
     public void countdown(){
         System.out.println("Countdown started");
         while(countdown > 0){
