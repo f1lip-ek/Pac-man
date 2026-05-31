@@ -17,8 +17,12 @@ public class GamePanel extends JPanel {
     private final HealthPanel healthPanel;
     private final PointPanel pointPanel;
 
+    private Thread gameThread;
+    private final GameLoop gameLoop;
 
-    public GamePanel(BufferedImage mapImg){
+
+    public GamePanel(BufferedImage mapImg, GameFrame gameFrame){
+        this.gameLoop = new GameLoop(this, gameFrame);
         this.removeAll();
         this.mainGamePanel = new MainGamePanel(mapImg);
         this.healthPanel = new HealthPanel(mainGamePanel.getPlayer());
@@ -28,6 +32,9 @@ public class GamePanel extends JPanel {
 
         this.add(mainGamePanel);
         panel();
+
+        this.gameThread = new Thread(gameLoop);
+        this.gameThread.start();
     }
 
     /**
@@ -53,5 +60,17 @@ public class GamePanel extends JPanel {
 
     public PointPanel getPointPanel() {
         return pointPanel;
+    }
+
+    public void setGameThread(Thread gameThread) {
+        this.gameThread = gameThread;
+    }
+
+    public Thread getGameThread() {
+        return gameThread;
+    }
+
+    public GameLoop getGameLoop() {
+        return gameLoop;
     }
 }

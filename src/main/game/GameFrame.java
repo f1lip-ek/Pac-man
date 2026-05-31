@@ -12,8 +12,6 @@ import java.awt.image.BufferedImage;
 public class GameFrame extends JFrame {
 
     private final GamePanel gamePanel;
-    private Thread gameThread;
-    private final GameLoop gameLoop;
     private final GameOverFrame gameOverFrame;
 
     private final int score = 0;
@@ -24,17 +22,13 @@ public class GameFrame extends JFrame {
         this.setTitle("Pac-man");
 
         this.gameType = gameType;
-        this.gamePanel = new GamePanel(mapImg);
-        this.gameLoop = new GameLoop(gamePanel, this);
-        this.gameThread = new Thread(gameLoop);
+        this.gamePanel = new GamePanel(mapImg, this);
 
         this.gameOverFrame = new GameOverFrame();
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         this.add(gamePanel);
-
-        this.gameThread.start();
 
         this.setResizable(false);
 
@@ -50,8 +44,10 @@ public class GameFrame extends JFrame {
         if (gameType == 1 && ending == 1 && Level.getNumOfMaps() != level) {
             this.level++;
             gamePanel.getMainGamePanel().setLevel(level);
-            this.gameThread = new Thread(gameLoop);
-            this.gameThread.start();
+
+            this.gamePanel.setGameThread(new Thread(this.gamePanel.getGameLoop()));
+            this.gamePanel.getGameThread().start();
+
         } else if (gameType == 1 && Level.getNumOfMaps() == level && ending == 1) {
             this.dispose();
             this.gameOverFrame.view(this.score, ending);
