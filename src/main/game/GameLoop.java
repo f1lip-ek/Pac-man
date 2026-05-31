@@ -106,7 +106,7 @@ public class GameLoop implements Runnable{
                     panel.getMainGamePanel().getGhosts()[i].setWasHaunted(true);
                     panel.getMainGamePanel().repaint();
                     try{
-                        Thread.sleep(1200);
+                        Thread.sleep(650);
                     } catch (InterruptedException e) {
                         System.err.println(e.getMessage());
                     }
