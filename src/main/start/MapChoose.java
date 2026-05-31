@@ -99,9 +99,13 @@ public class MapChoose extends JPanel {
      */
     private void addButtonsToPanel(){
         JPanel panel = new JPanel();
-        panel.setBounds(0, 500, 800, 100);
+        panel.setBounds(0, 510, 800, 90);
         panel.setLayout(new GridLayout(1, 2, 100, 0));
         panel.setBackground(Color.BLACK);
+
+        StaticThings.editButton(playButton, new Color(255, 244, 0), Color.BLACK);
+        StaticThings.editButton(exitButton, new Color(255, 244, 0), Color.BLACK);
+
         panel.add(playButton);
         panel.add(exitButton);
         this.add(panel);

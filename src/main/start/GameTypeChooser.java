@@ -68,6 +68,7 @@ public class GameTypeChooser extends JPanel {
         panel.setBackground(Color.BLACK);
 
         exitButton.setBounds(300, 25, 200, 50);
+        StaticThings.editButton(exitButton, new Color(255, 244, 0), Color.BLACK);
         panel.add(exitButton);
 
         this.add(buttonPanel());
@@ -86,6 +87,9 @@ public class GameTypeChooser extends JPanel {
 
         this.progressiveTypeButton.setBounds(300, 100, 200, 50);
         this.customTypeButton.setBounds(300, 200, 200, 50);
+
+        StaticThings.editButton(this.progressiveTypeButton, new Color(255, 244, 0), Color.BLACK);
+        StaticThings.editButton(this.customTypeButton, new Color(255, 244, 0), Color.BLACK);
 
         panel.add(progressiveTypeButton);
         panel.add(customTypeButton);

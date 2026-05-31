@@ -105,6 +105,10 @@ public class GameOverPanel extends JPanel {
         panel.setLayout(new GridLayout(1, 3, 50, 0));
         panel.setBackground(Color.BLACK);
 
+        StaticThings.editButton(this.playAgainButton, new Color(255, 244, 0), Color.BLACK);
+        StaticThings.editButton(this.exitButton, new Color(255, 244, 0), Color.BLACK);
+        StaticThings.editButton(this.goMainMenuButton, new Color(255, 244, 0), Color.BLACK);
+
         this.playAgainButton.addActionListener(_ -> {
             this.gameOverFrame.dispose();
             StartFrame.playAgain();

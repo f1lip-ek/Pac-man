@@ -72,6 +72,9 @@ public class StartGamePanel extends JPanel {
         panel.setLayout(new GridLayout(1, 2, 50, 0));
         panel.setBackground(Color.BLACK);
 
+        StaticThings.editButton(this.playButton, new Color(255, 244, 0), Color.BLACK);
+        StaticThings.editButton(this.exitButton, new Color(255, 244, 0), Color.BLACK);
+
         this.playButton.addActionListener(_ -> {
             this.cardLayout.show(this, "gameType");
         });
