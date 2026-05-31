@@ -85,7 +85,7 @@ public class MapChoose extends JPanel {
             if (mapChooser.getSelectedIndex() != 0){
                 mapImg = StaticThings.getImage("/maps/" + mapChooser.getSelectedItem());
                 mapChoosenIndex = mapChooser.getSelectedIndex();
-                startFrame.dispose();
+                startFrame.disposeThis();
                 GameFrame.view(mapImg, 2);
             }
         });
