@@ -59,6 +59,7 @@ public class Player{
         animCounter++;
         if (animCounter > (ANIM_COUNTER_MAX*2)) {
             animCounter = 0;
+            StaticThings.playSound("/music/normalWalk.wav").start();
         }
     }
 
