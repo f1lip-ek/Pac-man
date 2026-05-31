@@ -59,7 +59,11 @@ public class Player{
         animCounter++;
         if (animCounter > (ANIM_COUNTER_MAX*2)) {
             animCounter = 0;
-            StaticThings.playSound("/music/normalWalk.wav").start();
+            if (!isHunting) {
+                StaticThings.playSound("/music/normalWalk.wav").start();
+            }else{
+                StaticThings.playSound("/music/huntingWalk.wav").start();
+            }
         }
     }
 
