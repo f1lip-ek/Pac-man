@@ -6,6 +6,7 @@ import main.game.levels.Level;
 
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -90,5 +91,22 @@ public class StaticThings {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * Method that edits the button
+     * @param button to edit
+     * @param bgColor of the button
+     * @param fontColor of the button font
+     * @author Michaela Meitnarova
+     */
+    public static void editButton(JButton button, Color bgColor, Color fontColor){
+        button.setBackground(bgColor);
+        button.setForeground(fontColor);
+        button.setFont(new Font("Arial", Font.BOLD, 25));
+
+        button.setFocusPainted(false);
+        button.setBorderPainted(false);
+
     }
 }
